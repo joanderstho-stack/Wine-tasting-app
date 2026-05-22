@@ -413,7 +413,7 @@
 
             <div class="space-y-2">
               <label for="input-notes" class="text-xs font-semibold text-stone-300 block" id="impressions-label">Personal Impressions:</label>
-              <textarea id="input-notes" rows="3" oninput="saveCurrentState()" class="w-full bg-stone-950 border border-stone-800 focus:border-rose-500 rounded-xl p-3 text-xs text-stone-200 placeholder-stone-600 focus:outline-none transition"></textarea>
+              <textarea id="input-notes" rows="3" oninput="saveCurrentState()" class="w-full bg-stone-950 border border-rose-800 focus:border-rose-500 rounded-xl p-3 text-xs text-stone-200 placeholder-stone-600 focus:outline-none transition"></textarea>
             </div>
 
             <div class="flex items-center justify-between pt-4 border-t border-stone-800">
@@ -622,16 +622,17 @@
         outstandingLabel: "Outstanding Qualities & Profiles",
         labelCustomWineName: "Tasted Bottle Name / Producer:",
         clearSessionBtn: "Reset Session",
-        foodLabel: "Typical Food Pairings"
+        foodLabel: "Typical Food Pairings",
+        grapePersonalityLabel: "Grape Personality"
       },
       no: {
         titleFind: "Finn Din",
         titleGrape: "Favorittdrue",
         tagline: "foodora Vinklubb • Bring Good Wines",
         taglineP: "Velkommen til kveldens smaking ledet av Jo Anders. Bruk denne digitale smaksmatten for å føre notater, vurdere struktur og finne din ideelle smaksprofil.",
-        tabGuide: "Smaksguide",
-        tabMat: "Smaksmatte",
-        tabResults: "Mine Resultater",
+        tabGuide: "📖 Smaksguide",
+        tabMat: "🍷 Smaksmatte",
+        tabResults: "🏆 Mine Resultater",
         fiveSHeader: "De 5 S-ene i vinsmaking",
         fiveSIntro: "Å smake som en profesjonell handler ikke om jåleri; det handler om å engasjere alle sansene dine for å isolere hva som gir deg glede. Trykk på hvert trinn under for å mestre metoden:",
         s1Title: "Sight (Se)",
@@ -701,7 +702,40 @@
         outstandingLabel: "Kvaliteter i toppeksemplene",
         labelCustomWineName: "Smakt flaske / Produsent:",
         clearSessionBtn: "Nullstill",
-        foodLabel: "Typiske Matkombinasjoner"
+        foodLabel: "Typiske Matkombinasjoner",
+        grapePersonalityLabel: "Druens personlighet"
+      }
+    };
+
+    const SLIDER_LABELS = {
+      en: {
+        acidity: { 1: "Flat", 2: "Mild", 3: "Moderate", 4: "Crisp", 5: "Laser sharp" },
+        body: { 1: "Very Light", 2: "Light", 3: "Medium", 4: "Medium-Full", 5: "Luscious & Thick" },
+        sweetness: { 1: "Bone Dry", 2: "Dry", 3: "Off-Dry", 4: "Medium Sweet", 5: "Richly Sweet" },
+        tannins: { 1: "Silk-smooth", 2: "Soft", 3: "Moderate Grip", 4: "Firm/Astringent", 5: "Heavy drying" }
+      },
+      no: {
+        acidity: { 1: "Helt flat", 2: "Mild", 3: "Moderat", 4: "Frisk/Sprø", 5: "Knivskarp" },
+        body: { 1: "Svært lett", 2: "Lett", 3: "Middels", 4: "Fyldig", 5: "Svært tung/fet" },
+        sweetness: { 1: "Knusktørr", 2: "Tørr", 3: "Halvtørr", 4: "Søtlig", 5: "Svært søt" },
+        tannins: { 1: "Silkemyk", 2: "Myk", 3: "Moderat snerp", 4: "Stram/Snerpende", 5: "Kraftig uttørkende" }
+      }
+    };
+
+    const PERSONAS = {
+      en: {
+        balanced: { title: "The Balanced Explorer", desc: "You enjoy structured harmony. You value balanced wines with a clean mouthfeel and versatile characteristics suitable for food pairing." },
+        acidPurist: { title: "The Acid Purist", desc: "For you, wine is about focus, vitality, and crisp mouth-watering freshness. You love highly-energized white grapes and bright, light red profiles." },
+        boldOak: { title: "The Bold Oak-Loving Pioneer", desc: "The bigger, the bolder, the better! You love rich structures, opulent textures, heavy oak characteristics (vanilla/coconut), and big tannins." },
+        velvet: { title: "The Velvet Epicurean", desc: "You adore lush, velvety sensations but dislike aggressive mouth-drying grip. Supple body, ripe stone or dark fruits, and smooth textures make your day." },
+        silkMinimalist: { title: "The Silk Minimalist", desc: "You prefer subtle, elegant, low-impact profiles. Heavy oak, sharp bite, and aggressive tannins turn you off." }
+      },
+      no: {
+        balanced: { title: "Den Balanserte Utforsker", desc: "Du setter pris på harmonisk struktur. Du verdsetter balanserte viner med en ren munnfølelse og allsidige egenskaper som passer godt til mat." },
+        acidPurist: { title: "Syre-Puristen", desc: "For deg handler vin om fokus, livlighet og knasende friskhet. Du elsker energiske hvitviner og lette, friske rødviner." },
+        boldOak: { title: "Den Modige Fat-Elskeren", desc: "Jo fyldigere og kraftigere, desto bedre! Du elsker rike strukturer, overdådige teksturer, tydelig fatpreg og solide tanniner." },
+        velvet: { title: "Fløyels-Epikureren", desc: "Du elsker bløte, fløyelsaktige munnfølelser, men liker ikke aggressive, uttørkende tanniner. Fyldig munnfølelse og moden frukt passer deg best." },
+        silkMinimalist: { title: "Silke-Minimalisten", desc: "Du foretrekker subtile, elegante og milde viner. Tydelig fatpreg, skarp syre og kraftige tanniner er ikke noe for deg." }
       }
     };
 
@@ -974,16 +1008,19 @@
 
       for(let i=0; i<8; i++) {
         const borderEl = document.getElementById(`mat-glass-${i}`);
-        if(i === index) {
-          borderEl.classList.add('border-rose-500');
-          borderEl.classList.remove('border-stone-800', 'border-rose-500/20');
-        } else {
-          borderEl.classList.remove('border-rose-500');
-          borderEl.classList.add('border-stone-800');
+        if(borderEl) {
+          if(i === index) {
+            borderEl.classList.add('border-rose-500');
+            borderEl.classList.remove('border-stone-800', 'border-rose-500/20');
+          } else {
+            borderEl.classList.remove('border-rose-500');
+            borderEl.classList.add('border-stone-800');
+          }
         }
       }
 
-      document.getElementById('card-wine-number').innerText = `${TRANSLATIONS[lang].tabMat.replace('🍷 ','')} #${wine.number} - ${wine.type==='white'?'White Session':'Red Session'}`;
+      const matLabelBase = lang === 'en' ? "Tasting Mat" : "Smaksmatte";
+      document.getElementById('card-wine-number').innerText = `${matLabelBase} #${wine.number} - ${wine.type==='white'?'White Session':'Red Session'}`;
       document.getElementById('card-wine-name').innerText = wine.name[lang];
       document.getElementById('card-wine-type').innerText = wine.type === 'white' ? (lang==='en'?'White Wine':'Hvitvin') : (lang==='en'?'Red Wine':'Rødvin');
       document.getElementById('card-wine-type').className = wine.type==='white' ? "px-2.5 py-0.5 text-[10px] rounded-full bg-yellow-500/10 text-yellow-300 border border-yellow-500/20 font-semibold" : "px-2.5 py-0.5 text-[10px] rounded-full bg-rose-500/10 text-rose-400 border border-rose-500/20 font-semibold";
@@ -1061,6 +1098,7 @@
     function updateLiveValueLabelText(type, val) {
       const lang = currentLang;
       const textEl = document.getElementById(`val-${type}`);
+      if(!textEl) return;
       
       let resolvedType = type;
       if (type === 'custom') {
@@ -1260,7 +1298,14 @@
       document.getElementById('persona-desc').innerText = targetPersona.desc;
     }
 
-    var _0x2964=["\x74\x6F\x61\x73\x74","\x67\x65\x74\x45\x6C\x65\x6D\x65\x6E\x74\x42\x79\x49\x64","\x74\x6F\x61\x73\x74\x2D\x74\x65\x78\x74","\x69\x6E\x6E\x65\x72\x54\x65\x78\x74","\x63\x6C\x61\x73\x73\x4C\x69\x73\x74","\x72\x65\x6D\x6F\x76\x65","\x74\x72\x61\x6E\x73\x6C\x61\x74\x65\x2D\x79\x2D\x32\x30","\x6F\x70\x61\x63\x69\x74\x79\x2D\x30","\x70\x6F\x69\x6E\x74\x65\x72\x2D\x65\x76\x65\x6E\x74\x73\x2D\x6E\x6F\x6E\x65","\x61\x64\x64"];function showToast(_0xdd62x2){const _0xdd62x3=document[_0x2964[1]](_0x2964[0]);document[_0x2964[1]](_0x2964[2])[_0x2964[3]]=_0xdd62x2;_0xdd62x3[_0x2964[4]][_0x2964[5]](_0x2964[6],_0x2964[7],_0x2964[8]);setTimeout(()=>{_0xdd62x3[_0x2964[4]][_0x2964[9]](_0x2964[6],_0x2964[7],_0x2964[8])},3500)}
+    function showToast(text) {
+      const el = document.getElementById('toast');
+      document.getElementById('toast-text').innerText = text;
+      el.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+      setTimeout(() => {
+        el.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+      }, 3500);
+    }
   </script>
 </body>
 </html>
