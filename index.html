@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,6 +35,32 @@
     .no-scrollbar {
       -ms-overflow-style: none;
       scrollbar-width: none;
+    }
+
+    /* Print Stylesheet to guarantee ink optimization and clean formatting */
+    @media print {
+      body {
+        background: #ffffff !important;
+        color: #000000 !important;
+        padding: 0 !important;
+      }
+      header, nav, button, input, textarea, .grid, #section-guide, #section-mat, .absolute {
+        display: none !important;
+      }
+      #section-results {
+        display: block !important;
+      }
+      .glass-effect {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        color: #000000 !important;
+        backdrop-filter: none !important;
+        padding: 0 !important;
+      }
+      span, h3, h4, p, div {
+        color: #000000 !important;
+      }
     }
   </style>
 </head>
@@ -415,7 +442,12 @@
               <button onclick="navigateWine(-1)" class="px-4 py-2 border border-stone-800 rounded-lg text-xs hover:bg-stone-800/50 transition flex items-center gap-1">
                 <span id="btn-prev-text">← Prev Glass</span>
               </button>
-              <div class="text-[10px] text-stone-500 font-bold"><span id="progress-label-text">Progress:</span> <span id="progress-indicator">0 / 8</span> <span id="logged-text-label">logged</span></div>
+              
+              <div class="text-[10px] flex items-center gap-2 text-stone-500 font-bold">
+                <div><span id="progress-label-text">Progress:</span> <span id="progress-indicator">0 / 8</span> <span id="logged-text-label">logged</span></div>
+                <button onclick="clearAllTastings()" id="btn-clear-session" class="ml-2 border border-red-900/50 hover:bg-red-950/40 text-red-400 px-2 py-0.5 rounded text-[10px] uppercase tracking-wider transition">Reset Session</button>
+              </div>
+
               <button onclick="navigateWine(1)" class="px-4 py-2 bg-stone-800 text-stone-100 font-semibold rounded-lg text-xs hover:bg-amber-500 hover:text-stone-950 transition flex items-center gap-1">
                 <span id="btn-next-text">Next Glass →</span>
               </button>
@@ -522,7 +554,7 @@
             <p class="text-[10px] text-stone-500 font-semibold" id="share-prompt">WANT TO SHARE OR REMEMBER YOUR WINES?</p>
             <div class="flex flex-col sm:flex-row gap-3 justify-center">
               <button onclick="copyTastingSummary()" class="bg-stone-900 hover:bg-stone-800 text-stone-300 border border-stone-800 text-xs font-bold py-2.5 px-5 rounded-xl transition flex items-center justify-center gap-1.5 active:scale-95" id="btn-copy-summary"></button>
-              <button onclick="window.print()" class="bg-stone-900 hover:bg-stone-800 text-stone-300 border border-stone-800 text-xs font-bold py-2.5 px-5 rounded-xl transition flex items-center justify-center gap-1.5 active:scale-95" id="btn-print"></button>
+              <button onclick="triggerCleanPrint()" class="bg-stone-900 hover:bg-stone-800 text-stone-300 border border-stone-800 text-xs font-bold py-2.5 px-5 rounded-xl transition flex items-center justify-center gap-1.5 active:scale-95" id="btn-print"></button>
             </div>
             <p id="clipboard-message" class="text-xs text-emerald-400 font-semibold hidden"></p>
           </div>
@@ -607,7 +639,7 @@
         dryTannicLabel: "Dry vs. Tannic",
         sharePrompt: "WANT TO SHARE OR REMEMBER YOUR WINES?",
         copyBtn: "📋 Copy Summary To Clipboard",
-        printBtn: "🖨️ Print / Save as PDF",
+        printBtn: "🖨️ Print Profile Report",
         copiedToast: "Copied wine summary!",
         notesSavedToast: "Notes automatically saved!",
         notTastedYet: "Not tasted yet",
@@ -618,7 +650,8 @@
         toastLogged: "Logged rating for ",
         regionsLabel: "Key Geographical Regions",
         outstandingLabel: "Outstanding Qualities & Profiles",
-        labelCustomWineName: "Tasted Bottle Name / Producer:"
+        labelCustomWineName: "Tasted Bottle Name / Producer:",
+        clearSessionBtn: "Reset Session"
       },
       no: {
         titleFind: "Finn Din",
@@ -687,7 +720,7 @@
         dryTannicLabel: "Tørrhet vs. Snerp",
         sharePrompt: "VIL DU DELE ELLER LAGRE VINENE DINE?",
         copyBtn: "📋 Kopier sammendrag",
-        printBtn: "🖨️ Skriv ut / Lagre som PDF",
+        printBtn: "🖨️ Skriv ut resultatrapport",
         copiedToast: "Sammendraget er kopiert!",
         notesSavedToast: "Notatene ble lagret!",
         notTastedYet: "Ikke smakt ennå",
@@ -698,7 +731,8 @@
         toastLogged: "Registrerte vurdering for ",
         regionsLabel: "Viktige geografiske regioner",
         outstandingLabel: "Kvaliteter i toppeksemplene",
-        labelCustomWineName: "Smakt flaske / Produsent:"
+        labelCustomWineName: "Smakt flaske / Produsent:",
+        clearSessionBtn: "Nullstill"
       }
     };
 
@@ -742,7 +776,10 @@
         profile: { en: { acidity: "High", body: "Light", customLabel: "Sweetness", customVal: "Bone Dry" }, no: { acidity: "Høy", body: "Lett", customLabel: "Sødme", customVal: "Knusktørr" } },
         regions: { en: "Marlborough (New Zealand), Sancerre (France)", no: "Marlborough (New Zealand), Sancerre (Frankrike)" },
         outstandingExamples: { en: "Electrifying acidities balanced by concentration.", no: "Elektrisk, syrlig spenst balansert med ren konsentrasjon." },
-        expectedAromas: { en: ["Lemon 🍋", "Grapefruit 🍊", "Fresh Grass 🌱", "Bell Pepper 🫑"], no: ["Sitron 🍋", "Grapefrukt 🍊", "Friskt gress 🌱", "Paprika 🫑"] },
+        expectedAromas: { 
+          en: ["Grapefruit 🍊", "Lime Zest 🍋", "Fresh Grass 🌱", "Bell Pepper 🫑", "Gooseberry 🟢", "Passion Fruit 🍇", "White Peach 🍑", "Flint 🪨"], 
+          no: ["Grapefrukt 🍊", "Limeskall 🍋", "Friskt gress 🌱", "Paprika 🫑", "Stikkelsbær 🟢", "Pasjonsfrukt 🍇", "Hvit fersken 🍑", "Flint 🪨"] 
+        },
         userRating: { stars: 0, acidity: 3, body: 3, custom: 3, selectedAromas: [], notes: "", customWineName: "" }
       },
       {
@@ -752,7 +789,10 @@
         profile: { en: { acidity: "Very High", body: "Light", customLabel: "Sweetness", customVal: "Dry" }, no: { acidity: "Svært høy", body: "Lett", customLabel: "Sødme", customVal: "Tørr" } },
         regions: { en: "Mosel & Rheingau (Germany), Clare Valley (Australia)", no: "Mosel og Rheingau (Tyskland), Clare Valley (Australia)" },
         outstandingExamples: { en: "Thrilling tension with complex petroleum evolution.", no: "Spenning mellom syre og petroleumstone over tid." },
-        expectedAromas: { en: ["Lime Zest 🍋", "Peach 🍑", "Petrol ⛽", "Wet Stone 🪨"], no: ["Limeskall 🍋", "Fersken 🍑", "Petroleum ⛽", "Våt stein 🪨"] },
+        expectedAromas: { 
+          en: ["Green Apple 🍏", "Lime Curd 🍋", "White Peach 🍑", "Jasmine 🌸", "Petrol ⛽", "Beeswax 🐝", "Wet Slate 🧱", "Ginger 🫚"], 
+          no: ["Grønt eple 🍏", "Sitronkrem 🍋", "Fersken 🍑", "Jasmin 🌸", "Petroleum ⛽", "Bievoks 🐝", "Våt skifer 🧱", "Ingefær 🫚"] 
+        },
         userRating: { stars: 0, acidity: 3, body: 3, custom: 3, selectedAromas: [], notes: "", customWineName: "" }
       },
       {
@@ -762,7 +802,10 @@
         profile: { en: { acidity: "High", body: "Medium", customLabel: "Sweetness", customVal: "Dry to Off-Dry" }, no: { acidity: "Høy", body: "Middels", customLabel: "Sødme", customVal: "Tørr til halvtørr" } },
         regions: { en: "Vouvray (Loire, France), Swartland (South Africa)", no: "Vouvray (Loire, Frankrike), Swartland (Sør-Afrika)" },
         outstandingExamples: { en: "Possesses honeycomb notes and phenomenal structural longevity.", no: "Voksaktig honningtone med fabelaktig lagringsevne." },
-        expectedAromas: { en: ["Honey 🍯", "Yellow Pear 🍐", "Ginger 🫚", "Wet Wool 🐑"], no: ["Honning 🍯", "Gult pære 🍐", "Ingefær 🫚", "Våt ull 🐑"] },
+        expectedAromas: { 
+          en: ["Honey 🍯", "Yellow Pear 🍐", "Chamomile 🌼", "Quince 🍊", "Baked Apple 🍎", "Wet Wool 🐑", "Marzipan 🍬", "Lemon Peel 🍋"], 
+          no: ["Honning 🍯", "Gult pære 🍐", "Kamille 🌼", "Kvede 🍊", "Bakt eple 🍎", "Våt ull 🐑", "Marsipan 🍬", "Sitronskall 🍋"] 
+        },
         userRating: { stars: 0, acidity: 3, body: 3, custom: 3, selectedAromas: [], notes: "", customWineName: "" }
       },
       {
@@ -772,7 +815,10 @@
         profile: { en: { acidity: "Medium", body: "Full", customLabel: "Sweetness", customVal: "Dry" }, no: { acidity: "Middels", body: "Fyldig", customLabel: "Sødme", customVal: "Tørr" } },
         regions: { en: "Burgundy (France), Napa Valley (USA)", no: "Burgund (Frankrike), Napa Valley (USA)" },
         outstandingExamples: { en: "Integrated baking spices balanced by orchard fruit depth.", no: "Integrert fatkrydder med dyp fruktkjerne." },
-        expectedAromas: { en: ["Vanilla 🍦", "Butter 🧈", "Toasted Oak 🪵", "Coconut 🥥"], no: ["Vanilje 🍦", "Smør 🧈", "Ristet eik 🪵", "Kokos 🥥"] },
+        expectedAromas: { 
+          en: ["Vanilla 🍦", "Butter 🧈", "Toasted Oak 🪵", "Baked Pineapple 🍍", "Coconut 🥥", "Hazelnut 🌰", "Brioche 🍞", "Caramel 🍯"], 
+          no: ["Vanilje 🍦", "Smør 🧈", "Ristet eik 🪵", "Bakt ananas 🍍", "Kokos 🥥", "Hasselnøtt 🌰", "Brioche 🍞", "Karamell 🍯"] 
+        },
         userRating: { stars: 0, acidity: 3, body: 3, custom: 3, selectedAromas: [], notes: "", customWineName: "" }
       },
       {
@@ -782,7 +828,10 @@
         profile: { en: { acidity: "Medium-High", body: "Light", customLabel: "Tannins", customVal: "Low" }, no: { acidity: "Middels høy", body: "Lett", customLabel: "Tanniner", customVal: "Lav" } },
         regions: { en: "Burgundy (France), Oregon (USA), Central Otago (NZ)", no: "Burgund (Frankrike), Oregon (USA), Central Otago (NZ)" },
         outstandingExamples: { en: "Ethereal translucency with savory red berry complexity.", no: "Eterisk og lys farge med kompleks, syrlig skogsbærsmak." },
-        expectedAromas: { en: ["Red Cherry 🍒", "Raspberry 🍓", "Mushroom 🍄", "Forest Floor 🍂"], no: ["Røde kirsebær 🍒", "Bringebær 🍓", "Sopp 🍄", "Skogbunn 🍂"] },
+        expectedAromas: { 
+          en: ["Red Cherry 🍒", "Raspberry 🍓", "Strawberry 🍓", "Mushroom 🍄", "Forest Floor 🍂", "Cinnamon 🪵", "Cola 🥤", "Cranberry 🍒"], 
+          no: ["Røde kirsebær 🍒", "Bringebær 🍓", "Jordbær 🍓", "Sopp 🍄", "Skogbunn 🍂", "Kanel 🪵", "Cola 🥤", "Tranebær 🍒"] 
+        },
         userRating: { stars: 0, acidity: 3, body: 3, custom: 3, selectedAromas: [], notes: "", customWineName: "" }
       },
       {
@@ -792,7 +841,10 @@
         profile: { en: { acidity: "High", body: "Medium", customLabel: "Tannins", customVal: "Very High" }, no: { acidity: "Høy", body: "Middels", customLabel: "Tanniner", customVal: "Svært høy" } },
         regions: { en: "Barolo & Barbaresco (Piedmont, Italy)", no: "Barolo og Barbaresco (Piemonte, Italia)" },
         outstandingExamples: { en: "Dramatic structural power needing cellar time to soften.", no: "Enorm kraft og snerp som krever tid for å bli fløyelsmyk." },
-        expectedAromas: { en: ["Rose Petal 🌹", "Tar 🖤", "Tobacco 🍂", "Licorice 🍬"], no: ["Roseblader 🌹", "Tjære 🖤", "Tobakk 🍂", "Lakris 🍬"] },
+        expectedAromas: { 
+          en: ["Rose Petal 🌹", "Tar 🖤", "Leather 💼", "Tobacco 🍂", "Red Cherry 🍒", "Licorice 🍬", "Dried Herbs 🌿", "Anise 🌿"], 
+          no: ["Roseblader 🌹", "Tjære 🖤", "Lær 💼", "Tobakk 🍂", "Røde kirsebær 🍒", "Lakris 🍬", "Tørkede urter 🌿", "Anis 🌿"] 
+        },
         userRating: { stars: 0, acidity: 3, body: 3, custom: 3, selectedAromas: [], notes: "", customWineName: "" }
       },
       {
@@ -802,7 +854,10 @@
         profile: { en: { acidity: "Medium", body: "Full", customLabel: "Tannins", customVal: "High" }, no: { acidity: "Middels", body: "Fyldig", customLabel: "Tanniner", customVal: "Høy" } },
         regions: { en: "Bordeaux (France), Napa Valley (USA), Coonawarra (Australia)", no: "Bordeaux (Frankrike), Napa Valley (USA), Coonawarra (Australia)" },
         outstandingExamples: { en: "Exceptional structural poise building tobacco and mint accents.", no: "Flott balanse med dype toner av solbær, tobakk og mynte." },
-        expectedAromas: { en: ["Blackcurrant 🫐", "Cedar 🪵", "Graphite ✏️", "Dark Chocolate 🍫"], no: ["Solbær 🫐", "Seder 🪵", "Grafitt ✏️", "Mørk sjokolade 🍫"] },
+        expectedAromas: { 
+          en: ["Blackcurrant 🫐", "Blackberry 🍇", "Cedar Wood 🪵", "Graphite ✏️", "Dark Chocolate 🍫", "Mint 🌿", "Tobacco 🍂", "Green Pepper 🫑"], 
+          no: ["Solbær 🫐", "Bjørnebær 🍇", "Sedertre 🪵", "Grafitt ✏️", "Mørk sjokolade 🍫", "Mynte 🌿", "Tobakk 🍂", "Grønn paprika 🫑"] 
+        },
         userRating: { stars: 0, acidity: 3, body: 3, custom: 3, selectedAromas: [], notes: "", customWineName: "" }
       },
       {
@@ -812,7 +867,10 @@
         profile: { en: { acidity: "Medium-High", body: "Medium-Full", customLabel: "Tannins", customVal: "Medium-High" }, no: { acidity: "Middels høy", body: "Middels fyldig", customLabel: "Tanniner", customVal: "Middels høy" } },
         regions: { en: "Northern Rhône (France), Barossa Valley (Australia)", no: "Nord-Rhône (Frankrike), Barossa Valley (Australia)" },
         outstandingExamples: { en: "Opaque purple concentration with wild violet overtones.", no: "Tett mørk lilla konsentrasjon med duft av fioler." },
-        expectedAromas: { en: ["Black Pepper 🫑", "Smoke 💨", "Bacon 🥓", "Violet 🌸"], no: ["Sort pepper 🫑", "Røyk 💨", "Bacon 🥓", "Fioler 🌸"] },
+        expectedAromas: { 
+          en: ["Blackberry 🍇", "Black Pepper 🫑", "Smoke 💨", "Plum 🍑", "Bacon Fat 🥓", "Black Olive 🫒", "Violet 🌸", "Dark Cocoa 🍫"], 
+          no: ["Bjørnebær 🍇", "Sort pepper 🫑", "Røyk 💨", "Plomme 🍑", "Baconfett 🥓", "Sorte oliven 🫒", "Fioler 🌸", "Mørk kakao 🍫"] 
+        },
         userRating: { stars: 0, acidity: 3, body: 3, custom: 3, selectedAromas: [], notes: "", customWineName: "" }
       }
     ];
@@ -878,6 +936,7 @@
       document.getElementById('progress-label-text').innerText = dict.progressLabel;
       document.getElementById('logged-text-label').innerText = dict.loggedText;
       document.getElementById('label-custom-wine-name').innerText = dict.labelCustomWineName;
+      document.getElementById('btn-clear-session').innerText = dict.clearSessionBtn;
 
       document.getElementById('slider-acidity').innerText = dict.sliderAcidity;
       document.getElementById('slider-body').innerText = dict.sliderBody;
@@ -1037,7 +1096,7 @@
           const checkEl = document.getElementById(`check-${currentWineIndex}`);
           if(checkEl) checkEl.classList.remove('hidden');
           
-          const fluid = document.getElementById(`fluid-${currentWineIndex}`);
+          const fluid = document.getElementById('fluid-' + currentWineIndex);
           if(fluid) fluid.setAttribute('fill', WINE_DATA[currentWineIndex].type==='white' ? 'rgba(245,230,180,0.9)' : 'rgba(186,12,47,0.9)');
 
           showToast(`${TRANSLATIONS[currentLang].toastLogged} ${WINE_DATA[currentWineIndex].name[currentLang]}`);
@@ -1098,11 +1157,11 @@
     function saveCurrentState() {
       WINE_DATA[currentWineIndex].userRating.notes = document.getElementById('input-notes').value;
       WINE_DATA[currentWineIndex].userRating.customWineName = document.getElementById('input-custom-wine-name').value;
-      localStorage.setItem('find_your_grape_ratings_v3', JSON.stringify(WINE_DATA.map(w => w.userRating)));
+      localStorage.setItem('find_your_grape_ratings_v4', JSON.stringify(WINE_DATA.map(w => w.userRating)));
     }
 
     function setupGlobalStorageSync() {
-      const cached = localStorage.getItem('find_your_grape_ratings_v3');
+      const cached = localStorage.getItem('find_your_grape_ratings_v4');
       if(cached) {
         try {
           const parsedRatings = JSON.parse(cached);
@@ -1118,7 +1177,7 @@
             }
           });
           selectWine(0);
-        } catch(e) { console.error("Cache system loaded silently", e); }
+        } catch(e) { console.error("Cache system context parsing bypass complete", e); }
       }
     }
 
@@ -1132,6 +1191,26 @@
     function updateProgressCount() {
       const count = WINE_DATA.filter(w => w.userRating.stars > 0).length;
       document.getElementById('progress-indicator').innerText = `${count} / 8`;
+    }
+
+    function clearAllTastings() {
+      const msg = currentLang === 'en' 
+        ? "Are you sure you want to completely clear out all tracking data and start your tasting journey over?" 
+        : "Er du sikker på at du vil slette alle smaksnotater og starte smakingen helt på nytt?";
+      
+      if(confirm(msg)) {
+        localStorage.removeItem('find_your_grape_ratings_v4');
+        WINE_DATA.forEach(w => {
+          w.userRating = { stars: 0, acidity: 3, body: 3, custom: 3, selectedAromas: [], notes: "", customWineName: "" };
+          const checkEl = document.getElementById(`check-${w.id}`);
+          if(checkEl) checkEl.classList.add('hidden');
+          const fluid = document.getElementById(`fluid-${w.id}`);
+          if(fluid) fluid.setAttribute('fill', 'rgba(245,230,180,0.4)');
+        });
+        selectWine(0);
+        switchTab('guide');
+        showToast(currentLang === 'en' ? "Tasting board successfully reset!" : "Smaksmatten ble nullstilt!");
+      }
     }
 
     function calculateResults() {
@@ -1265,6 +1344,12 @@
         msg.classList.remove('hidden');
         setTimeout(() => msg.classList.add('hidden'), 4000);
       });
+    }
+
+    function triggerCleanPrint() {
+      // Force render latest metrics inside dashboard matrix before execution 
+      calculateResults();
+      window.print();
     }
 
     function showToast(text) {
