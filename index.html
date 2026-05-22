@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Find Your Favorite Grape - Wine Tasting Companion</title>
+  <title>Bring Good Wines - foodora Wine Club</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,13 +20,13 @@
       background: rgba(28, 25, 23, 0.7);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(212, 175, 55, 0.15);
+      border: 1px solid rgba(255, 0, 127, 0.15);
     }
     .wine-glow-white:hover {
       box-shadow: 0 0 20px rgba(245, 230, 180, 0.3);
     }
     .wine-glow-red:hover {
-      box-shadow: 0 0 20px rgba(186, 12, 47, 0.3);
+      box-shadow: 0 0 20px rgba(255, 0, 127, 0.25);
     }
     .no-scrollbar::-webkit-scrollbar {
       display: none;
@@ -36,38 +35,12 @@
       -ms-overflow-style: none;
       scrollbar-width: none;
     }
-
-    /* Print Stylesheet to guarantee ink optimization and clean formatting */
-    @media print {
-      body {
-        background: #ffffff !important;
-        color: #000000 !important;
-        padding: 0 !important;
-      }
-      header, nav, button, input, textarea, .grid, #section-guide, #section-mat, .absolute {
-        display: none !important;
-      }
-      #section-results {
-        display: block !important;
-      }
-      .glass-effect {
-        background: transparent !important;
-        border: none !important;
-        box-shadow: none !important;
-        color: #000000 !important;
-        backdrop-filter: none !important;
-        padding: 0 !important;
-      }
-      span, h3, h4, p, div {
-        color: #000000 !important;
-      }
-    }
   </style>
 </head>
-<body class="bg-stone-950 text-stone-100 min-h-screen selection:bg-amber-600 selection:text-white pb-24">
+<body class="bg-stone-950 text-stone-100 min-h-screen selection:bg-rose-600 selection:text-white pb-24">
 
-  <header class="relative overflow-hidden border-b border-stone-800 bg-stone-900/50 py-12 px-4 text-center">
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(114,47,55,0.15)_0%,transparent_70%)]"></div>
+  <header class="relative overflow-hidden border-b border-stone-800 bg-stone-900/40 py-12 px-4 text-center">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,0,127,0.08)_0%,transparent_70%)]"></div>
     
     <div class="absolute top-4 right-4 z-50 flex gap-2 bg-stone-950/80 p-1 rounded-lg border border-stone-800">
       <button onclick="setLanguage('en')" id="lang-btn-en" class="px-2 py-1 rounded text-[10px] md:text-xs font-bold transition">🇬🇧 EN</button>
@@ -75,12 +48,12 @@
     </div>
 
     <div class="max-w-4xl mx-auto relative z-10">
-      <span class="text-xs uppercase tracking-[0.25em] text-amber-500 font-semibold mb-3 block" id="tagline">Personal Tasting Companion</span>
+      <span class="text-xs uppercase tracking-[0.25em] text-rose-400 font-bold mb-3 block" id="tagline">foodora Wine Club • Bring Good Wines</span>
       <h1 class="text-4xl md:text-6xl font-black text-stone-100 mb-4 tracking-tight">
-        <span id="title-find">Find Your</span> <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-rose-300 to-red-400" id="title-grape">Favorite Grape</span>
+        <span id="title-find">Find Your</span> <span class="text-transparent bg-clip-text bg-gradient-to-r from-rose-300 via-amber-200 to-rose-400" id="title-grape">Favorite Grape</span>
       </h1>
       <p class="text-stone-400 max-w-xl mx-auto text-sm md:text-base leading-relaxed" id="tagline-p">
-        An interactive tasting mat, crash course, and intelligent flavor profile tracker to help you discover your ideal grape.
+        Welcome to tonight's flight hosted by Jo Anders. Use this digital companion mat to log structures, rate flavors, and discover your ultimate palate profile.
       </p>
     </div>
   </header>
@@ -104,7 +77,7 @@
         <div class="glass-effect rounded-2xl p-6 md:p-8 space-y-6">
           <div class="flex items-center gap-3">
             <span class="text-2xl">🎓</span>
-            <h2 class="text-2xl font-bold text-amber-100" id="five-s-header">The 5 S's of Wine Tasting</h2>
+            <h2 class="text-2xl font-bold text-rose-100" id="five-s-header">The 5 S's of Wine Tasting</h2>
           </div>
           <p class="text-stone-400 text-sm" id="five-s-intro">
             Tasting like a professional isn't about snobbery; it's about engaging all your senses to isolate what elements bring you joy. Tap each step below to master the process:
@@ -113,7 +86,7 @@
           <div class="space-y-3">
             <div class="border border-stone-800 rounded-xl bg-stone-900/40 overflow-hidden transition-all">
               <button onclick="toggleS(1)" class="w-full text-left px-4 py-3 flex justify-between items-center hover:bg-stone-800/40">
-                <span class="font-semibold text-sm flex items-center gap-2"><span class="text-amber-500">1.</span> <span id="label-s1">Sight</span></span>
+                <span class="font-semibold text-sm flex items-center gap-2"><span class="text-rose-400">1.</span> <span id="label-s1">Sight</span></span>
                 <span id="s-arrow-1" class="text-stone-500 transition-transform duration-200">▼</span>
               </button>
               <div id="s-content-1" class="hidden px-4 pb-4 text-xs text-stone-400 leading-relaxed border-t border-stone-800/50 pt-3">
@@ -122,7 +95,7 @@
             </div>
             <div class="border border-stone-800 rounded-xl bg-stone-900/40 overflow-hidden transition-all">
               <button onclick="toggleS(2)" class="w-full text-left px-4 py-3 flex justify-between items-center hover:bg-stone-800/40">
-                <span class="font-semibold text-sm flex items-center gap-2"><span class="text-amber-500">2.</span> <span id="label-s2">Swirl</span></span>
+                <span class="font-semibold text-sm flex items-center gap-2"><span class="text-rose-400">2.</span> <span id="label-s2">Swirl</span></span>
                 <span id="s-arrow-2" class="text-stone-500 transition-transform duration-200">▼</span>
               </button>
               <div id="s-content-2" class="hidden px-4 pb-4 text-xs text-stone-400 leading-relaxed border-t border-stone-800/50 pt-3">
@@ -131,7 +104,7 @@
             </div>
             <div class="border border-stone-800 rounded-xl bg-stone-900/40 overflow-hidden transition-all">
               <button onclick="toggleS(3)" class="w-full text-left px-4 py-3 flex justify-between items-center hover:bg-stone-800/40">
-                <span class="font-semibold text-sm flex items-center gap-2"><span class="text-amber-500">3.</span> <span id="label-s3">Smell</span></span>
+                <span class="font-semibold text-sm flex items-center gap-2"><span class="text-rose-400">3.</span> <span id="label-s3">Smell</span></span>
                 <span id="s-arrow-3" class="text-stone-500 transition-transform duration-200">▼</span>
               </button>
               <div id="s-content-3" class="hidden px-4 pb-4 text-xs text-stone-400 leading-relaxed border-t border-stone-800/50 pt-3">
@@ -140,7 +113,7 @@
             </div>
             <div class="border border-stone-800 rounded-xl bg-stone-900/40 overflow-hidden transition-all">
               <button onclick="toggleS(4)" class="w-full text-left px-4 py-3 flex justify-between items-center hover:bg-stone-800/40">
-                <span class="font-semibold text-sm flex items-center gap-2"><span class="text-amber-500">4.</span> <span id="label-s4">Sip</span></span>
+                <span class="font-semibold text-sm flex items-center gap-2"><span class="text-rose-400">4.</span> <span id="label-s4">Sip</span></span>
                 <span id="s-arrow-4" class="text-stone-500 transition-transform duration-200">▼</span>
               </button>
               <div id="s-content-4" class="hidden px-4 pb-4 text-xs text-stone-400 leading-relaxed border-t border-stone-800/50 pt-3">
@@ -149,7 +122,7 @@
             </div>
             <div class="border border-stone-800 rounded-xl bg-stone-900/40 overflow-hidden transition-all">
               <button onclick="toggleS(5)" class="w-full text-left px-4 py-3 flex justify-between items-center hover:bg-stone-800/40">
-                <span class="font-semibold text-sm flex items-center gap-2"><span class="text-amber-500">5.</span> <span id="label-s5">Savor & Decide</span></span>
+                <span class="font-semibold text-sm flex items-center gap-2"><span class="text-rose-400">5.</span> <span id="label-s5">Savor & Decide</span></span>
                 <span id="s-arrow-5" class="text-stone-500 transition-transform duration-200">▼</span>
               </button>
               <div id="s-content-5" class="hidden px-4 pb-4 text-xs text-stone-400 leading-relaxed border-t border-stone-800/50 pt-3">
@@ -163,7 +136,7 @@
           <div>
             <div class="flex items-center gap-3 mb-4">
               <span class="text-2xl">⚖️</span>
-              <h2 class="text-2xl font-bold text-amber-100" id="cheat-sheet-header">Your Palate Cheat Sheet</h2>
+              <h2 class="text-2xl font-bold text-rose-100" id="cheat-sheet-header">Your Palate Cheat Sheet</h2>
             </div>
             <p class="text-stone-400 text-sm mb-6" id="cheat-sheet-intro">
               When reviewing your wines, you will rate core structural elements. Here is how to recognize them on your tongue:
@@ -195,8 +168,8 @@
           </div>
 
           <div class="pt-6 border-t border-stone-800 mt-4 text-center">
-            <button onclick="switchTab('mat')" class="inline-flex items-center gap-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-stone-950 font-bold text-sm px-6 py-3 rounded-xl transition duration-300 transform active:scale-95 shadow-lg shadow-amber-500/10" id="start-mat-btn">
-              Start Interactive Tasting Mat 
+            <button onclick="switchTab('mat')" class="inline-flex items-center gap-2 bg-gradient-to-r from-rose-500 to-rose-600 hover:from-rose-400 hover:to-rose-500 text-stone-950 font-bold text-sm px-6 py-3 rounded-xl transition duration-300 transform active:scale-95 shadow-lg shadow-rose-500/10" id="start-mat-btn">
+              Open Tasting Mat Table 
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
             </button>
           </div>
@@ -204,9 +177,9 @@
       </div>
 
       <div class="glass-effect rounded-2xl p-6 md:p-8 text-center max-w-3xl mx-auto space-y-4">
-        <h3 class="text-xl font-bold text-stone-200" id="why-theme-header">Why This Theme: "Find Your Own Favorite Grape"</h3>
+        <h3 class="text-xl font-bold text-stone-200" id="why-theme-header">Bring Good Wines Concept</h3>
         <p class="text-stone-400 text-sm leading-relaxed" id="why-theme-desc">
-          Too often we buy wines based on marketing or labels. This tasting separates those factors. Explore how primary grapes vary in structure, weight, and aroma. Your palate is distinct; there is no correct answer, only your personal favorites!
+          The foodora wine club cuts out marketing fluff to put flavor metrics and pairing alignment back into complete focus. Your palate is unique—there are no wrong answers, only great findings.
         </p>
       </div>
     </section>
@@ -214,26 +187,26 @@
     <section id="section-mat" class="space-y-8 hidden">
       <div class="glass-effect rounded-2xl p-6 md:p-8 border border-stone-800">
         <div class="text-center space-y-2 mb-8">
-          <h3 class="text-2xl md:text-3xl font-black text-amber-100" id="virtual-table-title">Your Virtual Tasting Table</h3>
+          <h3 class="text-2xl md:text-3xl font-black text-rose-200" id="virtual-table-title">Bring Good Wines Interactive Table</h3>
           <p class="text-stone-400 text-xs md:text-sm" id="virtual-table-sub">Tap on any glass below to pull up its flavor profile and log your score!</p>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div class="bg-stone-900/40 rounded-xl p-5 border border-stone-800/80">
             <div class="text-center mb-4">
-              <span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-500/10 text-amber-300 border border-amber-500/20" id="session1-header">
+              <span class="px-3 py-1 rounded-full text-xs font-bold bg-rose-500/10 text-rose-300 border border-rose-500/20" id="session1-header">
                 🤍 SESSION 1: THE WHITES
               </span>
             </div>
             
             <div class="grid grid-cols-4 gap-2 md:gap-4">
-              <button onclick="selectWine(0)" id="mat-glass-0" class="wine-glow-white border-2 border-amber-500/20 bg-stone-900/60 rounded-xl p-3 flex flex-col items-center gap-2 transition duration-200 group relative">
+              <button onclick="selectWine(0)" id="mat-glass-0" class="wine-glow-white border-2 border-rose-500/20 bg-stone-900/60 rounded-xl p-3 flex flex-col items-center gap-2 transition duration-200 group relative">
                 <span class="absolute top-1 left-2 text-[10px] text-stone-500 font-bold">#1</span>
                 <svg class="w-8 h-12 text-yellow-100/40 group-hover:text-yellow-100/90 group-hover:scale-110 transition duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                   <path d="M12 15V22M8 22H16M6 6C6 11 18 11 18 6V3H6V6Z" stroke-linecap="round" stroke-linejoin="round"/>
                   <path id="fluid-0" d="M7 6C7 9.5 17 9.5 17 6H7Z" fill="rgba(245,230,180,0.4)" stroke="none"/>
                 </svg>
-                <span class="text-[10px] md:text-xs font-bold text-stone-300 group-hover:text-amber-300 text-center truncate w-full" id="mat-label-0">Sauvignon B.</span>
+                <span class="text-[10px] md:text-xs font-bold text-stone-300 group-hover:text-rose-300 text-center truncate w-full" id="mat-label-0">Sauvignon B.</span>
                 <span id="check-0" class="hidden text-xs text-emerald-500 absolute top-1 right-2">✓</span>
               </button>
               
@@ -243,7 +216,7 @@
                   <path d="M12 15V22M8 22H16M6 6C6 11 18 11 18 6V3H6V6Z" stroke-linecap="round" stroke-linejoin="round"/>
                   <path id="fluid-1" d="M7 6C7 9.5 17 9.5 17 6H7Z" fill="rgba(245,230,180,0.4)" stroke="none"/>
                 </svg>
-                <span class="text-[10px] md:text-xs font-bold text-stone-300 group-hover:text-amber-300 text-center truncate w-full" id="mat-label-1">Riesling</span>
+                <span class="text-[10px] md:text-xs font-bold text-stone-300 group-hover:text-rose-300 text-center truncate w-full" id="mat-label-1">Riesling</span>
                 <span id="check-1" class="hidden text-xs text-emerald-500 absolute top-1 right-2">✓</span>
               </button>
 
@@ -253,7 +226,7 @@
                   <path d="M12 15V22M8 22H16M6 6C6 11 18 11 18 6V3H6V6Z" stroke-linecap="round" stroke-linejoin="round"/>
                   <path id="fluid-2" d="M7 6C7 9.5 17 9.5 17 6H7Z" fill="rgba(245,230,180,0.4)" stroke="none"/>
                 </svg>
-                <span class="text-[10px] md:text-xs font-bold text-stone-300 group-hover:text-amber-300 text-center truncate w-full" id="mat-label-2">Chenin Blanc</span>
+                <span class="text-[10px] md:text-xs font-bold text-stone-300 group-hover:text-rose-300 text-center truncate w-full" id="mat-label-2">Chenin Blanc</span>
                 <span id="check-2" class="hidden text-xs text-emerald-500 absolute top-1 right-2">✓</span>
               </button>
 
@@ -263,7 +236,7 @@
                   <path d="M12 15V22M8 22H16M6 6C6 11 18 11 18 6V3H6V6Z" stroke-linecap="round" stroke-linejoin="round"/>
                   <path id="fluid-3" d="M7 6C7 9.5 17 9.5 17 6H7Z" fill="rgba(245,230,180,0.4)" stroke="none"/>
                 </svg>
-                <span class="text-[10px] md:text-xs font-bold text-stone-300 group-hover:text-amber-300 text-center truncate w-full" id="mat-label-3">Chard (Oaked)</span>
+                <span class="text-[10px] md:text-xs font-bold text-stone-300 group-hover:text-rose-300 text-center truncate w-full" id="mat-label-3">Chard (Oaked)</span>
                 <span id="check-3" class="hidden text-xs text-emerald-500 absolute top-1 right-2">✓</span>
               </button>
             </div>
@@ -322,11 +295,11 @@
       </div>
 
       <div class="glass-effect rounded-2xl p-6 md:p-8 space-y-8 relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-amber-500/10 to-transparent pointer-events-none rounded-bl-full"></div>
+        <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-rose-500/10 to-transparent pointer-events-none rounded-bl-full"></div>
         
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-stone-800">
           <div class="space-y-1">
-            <span id="card-wine-number" class="text-xs font-bold text-amber-500 uppercase tracking-widest">Wine #1 - White Session</span>
+            <span id="card-wine-number" class="text-xs font-bold text-rose-400 uppercase tracking-widest">Wine #1 - White Session</span>
             <div class="flex items-center gap-3">
               <h3 id="card-wine-name" class="text-3xl font-black text-white">Sauvignon Blanc</h3>
               <span id="card-wine-type" class="px-2.5 py-0.5 text-[10px] rounded-full bg-yellow-500/10 text-yellow-300 border border-yellow-500/20 font-semibold">White Wine</span>
@@ -343,6 +316,11 @@
             <div>
               <h4 class="text-xs font-bold uppercase tracking-wider text-stone-400 mb-3" id="grape-personality-label">Grape Personality</h4>
               <p id="card-wine-desc" class="text-sm text-stone-300 leading-relaxed bg-stone-900/30 p-4 rounded-xl border border-stone-800/40"></p>
+            </div>
+
+            <div>
+              <h4 class="text-xs font-bold uppercase tracking-wider text-rose-400 mb-2" id="card-food-label">foodora Ideal Matches</h4>
+              <p id="card-wine-food" class="text-sm text-rose-100/90 font-medium leading-relaxed bg-rose-950/20 p-3.5 rounded-xl border border-rose-500/20"></p>
             </div>
 
             <div>
@@ -386,11 +364,11 @@
           </div>
 
           <div class="lg:col-span-7 space-y-6 bg-stone-900/20 p-6 rounded-2xl border border-stone-800/40">
-            <h4 class="text-xs font-bold uppercase tracking-wider text-amber-500" id="log-notes-header">Log Your Tasting Notes</h4>
+            <h4 class="text-xs font-bold uppercase tracking-wider text-rose-400" id="log-notes-header">Log Your Tasting Notes</h4>
             
             <div class="space-y-2">
               <label for="input-custom-wine-name" class="text-xs font-semibold text-stone-300 block" id="label-custom-wine-name">Tasted Bottle Name / Producer:</label>
-              <input type="text" id="input-custom-wine-name" oninput="saveCurrentState()" class="w-full bg-stone-950 border border-stone-800 focus:border-amber-500 rounded-xl px-3 py-2 text-xs text-stone-200 placeholder-stone-600 focus:outline-none transition">
+              <input type="text" id="input-custom-wine-name" oninput="saveCurrentState()" class="w-full bg-stone-950 border border-stone-800 focus:border-rose-500 rounded-xl px-3 py-2 text-xs text-stone-200 placeholder-stone-600 focus:outline-none transition">
             </div>
 
             <div class="space-y-4">
@@ -399,7 +377,7 @@
                   <span class="font-semibold text-stone-300 flex items-center gap-1.5" id="slider-acidity">🍋 Acidity</span>
                   <span id="val-acidity" class="text-amber-400 font-bold bg-amber-500/10 px-2 py-0.5 rounded"></span>
                 </div>
-                <input type="range" id="input-acidity" min="1" max="5" value="3" oninput="updateLiveValue('acidity')" class="w-full accent-amber-500 h-1.5 bg-stone-800 rounded-lg appearance-none cursor-pointer">
+                <input type="range" id="input-acidity" min="1" max="5" value="3" oninput="updateLiveValue('acidity')" class="w-full accent-rose-500 h-1.5 bg-stone-800 rounded-lg appearance-none cursor-pointer">
                 <div class="flex justify-between text-[10px] text-stone-600">
                   <span id="lbl-acid-low"></span>
                   <span id="lbl-acid-high"></span>
@@ -435,7 +413,7 @@
 
             <div class="space-y-2">
               <label for="input-notes" class="text-xs font-semibold text-stone-300 block" id="impressions-label">Personal Impressions:</label>
-              <textarea id="input-notes" rows="3" oninput="saveCurrentState()" class="w-full bg-stone-950 border border-stone-800 focus:border-amber-500 rounded-xl p-3 text-xs text-stone-200 placeholder-stone-600 focus:outline-none transition"></textarea>
+              <textarea id="input-notes" rows="3" oninput="saveCurrentState()" class="w-full bg-stone-950 border border-stone-800 focus:border-rose-500 rounded-xl p-3 text-xs text-stone-200 placeholder-stone-600 focus:outline-none transition"></textarea>
             </div>
 
             <div class="flex items-center justify-between pt-4 border-t border-stone-800">
@@ -448,7 +426,7 @@
                 <button onclick="clearAllTastings()" id="btn-clear-session" class="ml-2 border border-red-900/50 hover:bg-red-950/40 text-red-400 px-2 py-0.5 rounded text-[10px] uppercase tracking-wider transition">Reset Session</button>
               </div>
 
-              <button onclick="navigateWine(1)" class="px-4 py-2 bg-stone-800 text-stone-100 font-semibold rounded-lg text-xs hover:bg-amber-500 hover:text-stone-950 transition flex items-center gap-1">
+              <button onclick="navigateWine(1)" class="px-4 py-2 bg-stone-800 text-stone-100 font-semibold rounded-lg text-xs hover:bg-rose-500 hover:text-stone-950 transition flex items-center gap-1">
                 <span id="btn-next-text">Next Glass →</span>
               </button>
             </div>
@@ -459,11 +437,11 @@
 
     <section id="section-results" class="space-y-8 hidden">
       <div class="glass-effect rounded-2xl p-6 md:p-8 text-center max-w-2xl mx-auto space-y-4">
-        <h3 class="text-3xl font-black text-amber-100" id="results-header">Your Palate Profile Result</h3>
+        <h3 class="text-3xl font-black text-rose-100" id="results-header">Your Palate Profile Result</h3>
         <p class="text-stone-400 text-sm" id="results-sub">
-          We processed your scores, descriptors, and structures across all grapes. Here is your definitive profile and recommendations!
+          Bring Good Wines analysis matrix is complete! Here are your curated results based on tonight's flight.
         </p>
-        <button onclick="calculateResults()" class="mt-2 bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-400 hover:to-amber-500 text-stone-950 font-bold text-sm px-6 py-2.5 rounded-xl transition duration-300 transform active:scale-95 shadow-md shadow-amber-500/10">
+        <button onclick="calculateResults()" class="mt-2 bg-gradient-to-r from-rose-500 to-rose-600 hover:from-rose-400 hover:to-rose-500 text-stone-950 font-bold text-sm px-6 py-2.5 rounded-xl transition duration-300 transform active:scale-95 shadow-md shadow-rose-500/10">
           <span id="refresh-btn-text">🔄 Calculate / Refresh My Profile</span>
         </button>
       </div>
@@ -471,14 +449,14 @@
       <div id="no-ratings-warning" class="text-center p-12 bg-stone-900/30 rounded-2xl border border-stone-800/80 max-w-md mx-auto space-y-4">
         <span class="text-4xl">🤔</span>
         <h4 class="text-lg font-bold text-stone-300" id="no-ratings-title">No Ratings Logged Yet</h4>
-        <p class="text-stone-400 text-xs" id="no-ratings-desc">Head over to the Tasting Mat to score a few grapes first, then come back here to see your match!</p>
-        <button onclick="switchTab('mat')" class="text-amber-400 text-xs font-bold hover:underline" id="go-mat-btn">Go to Tasting Mat →</button>
+        <p class="text-stone-400 text-xs" id="no-ratings-desc">Head over to the Tasting Mat to score a few grapes first, then come back here to view your final profile match!</p>
+        <button onclick="switchTab('mat')" class="text-rose-400 text-xs font-bold hover:underline" id="go-mat-btn">Go to Tasting Mat →</button>
       </div>
 
       <div id="results-dashboard" class="hidden space-y-8">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div class="glass-effect rounded-2xl p-6 md:p-8 space-y-6 relative overflow-hidden border-2 border-amber-500/20" id="fav-white-card">
-            <div class="absolute top-0 right-0 p-3 bg-amber-500/10 text-amber-300 text-xs font-bold rounded-bl-xl border-l border-b border-amber-500/20" id="fav-white-badge">
+          <div class="glass-effect rounded-2xl p-6 md:p-8 space-y-6 relative overflow-hidden border-2 border-rose-500/20" id="fav-white-card">
+            <div class="absolute top-0 right-0 p-3 bg-rose-500/10 text-rose-300 text-xs font-bold rounded-bl-xl border-l border-b border-rose-500/20" id="fav-white-badge">
               FAVORITE WHITE
             </div>
             
@@ -490,7 +468,7 @@
 
             <div class="space-y-4">
               <div class="bg-stone-900/40 p-4 rounded-xl border border-stone-800">
-                <span class="text-[10px] text-amber-400 font-bold uppercase block mb-1" id="fav-white-enjoyed-label"></span>
+                <span class="text-[10px] text-rose-400 font-bold uppercase block mb-1" id="fav-white-enjoyed-label"></span>
                 <p id="fav-white-reason" class="text-xs text-stone-300 leading-relaxed"></p>
               </div>
 
@@ -527,11 +505,11 @@
         </div>
 
         <div class="glass-effect rounded-2xl p-8 max-w-3xl mx-auto space-y-6 border border-stone-700 relative overflow-hidden">
-          <div class="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(212,175,55,0.08)_0%,transparent_60%)]"></div>
+          <div class="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(255,0,127,0.05)_0%,transparent_60%)]"></div>
           
           <div class="text-center space-y-2 relative z-10">
-            <span class="text-[10px] text-amber-500 font-bold uppercase tracking-widest block" id="flavor-brand-label">YOUR FLAVOR BRAND</span>
-            <h4 id="persona-title" class="text-3xl md:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-100 to-amber-300"></h4>
+            <span class="text-[10px] text-rose-400 font-bold uppercase tracking-widest block" id="flavor-brand-label">YOUR FLAVOR BRAND</span>
+            <h4 id="persona-title" class="text-3xl md:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-rose-200 to-amber-200"></h4>
             <p id="persona-desc" class="text-xs md:text-sm text-stone-400 max-w-xl mx-auto leading-relaxed"></p>
           </div>
 
@@ -550,21 +528,16 @@
             </div>
           </div>
 
-          <div class="pt-6 border-t border-stone-800 text-center space-y-4">
-            <p class="text-[10px] text-stone-500 font-semibold" id="share-prompt">WANT TO SHARE OR REMEMBER YOUR WINES?</p>
-            <div class="flex flex-col sm:flex-row gap-3 justify-center">
-              <button onclick="copyTastingSummary()" class="bg-stone-900 hover:bg-stone-800 text-stone-300 border border-stone-800 text-xs font-bold py-2.5 px-5 rounded-xl transition flex items-center justify-center gap-1.5 active:scale-95" id="btn-copy-summary"></button>
-              <button onclick="triggerCleanPrint()" class="bg-stone-900 hover:bg-stone-800 text-stone-300 border border-stone-800 text-xs font-bold py-2.5 px-5 rounded-xl transition flex items-center justify-center gap-1.5 active:scale-95" id="btn-print"></button>
-            </div>
-            <p id="clipboard-message" class="text-xs text-emerald-400 font-semibold hidden"></p>
+          <div class="pt-4 text-center">
+            <p class="text-xs text-rose-400 font-semibold italic">Thank you for attending the "Bring Good Wines" flight hosted by Jo Anders!</p>
           </div>
         </div>
       </div>
     </section>
   </main>
 
-  <div id="toast" class="fixed bottom-6 left-6 bg-stone-900 border border-amber-500/30 text-stone-100 text-xs px-4 py-3 rounded-xl shadow-2xl transition duration-300 transform translate-y-20 opacity-0 pointer-events-none flex items-center gap-2 z-50">
-    <span class="text-amber-400">⚡</span>
+  <div id="toast" class="fixed bottom-6 left-6 bg-stone-900 border border-rose-500/30 text-stone-100 text-xs px-4 py-3 rounded-xl shadow-2xl transition duration-300 transform translate-y-20 opacity-0 pointer-events-none flex items-center gap-2 z-50">
+    <span class="text-rose-400">⚡</span>
     <span id="toast-text"></span>
   </div>
 
@@ -575,8 +548,8 @@
       en: {
         titleFind: "Find Your",
         titleGrape: "Favorite Grape",
-        tagline: "Personal Tasting Companion",
-        taglineP: "An interactive tasting mat, crash course, and intelligent flavor profile tracker to help you discover your ideal grape.",
+        tagline: "foodora Wine Club • Bring Good Wines",
+        taglineP: "Welcome to tonight's flight hosted by Jo Anders. Use this digital companion mat to log structures, rate flavors, and discover your ultimate palate profile.",
         tabGuide: "📖 Tasting Guide",
         tabMat: "🍷 Tasting Mat",
         tabResults: "🏆 My Results",
@@ -600,10 +573,10 @@
         tanninDesc: "Found primarily in red wines. It binds to saliva proteins and leaves a dry, astringent, chalky feeling on your gums and tongue—similar to strong black tea.",
         bodyTitle: "Body (Weight & Viscosity)",
         bodyDesc: "How heavy or thick does the wine feel in your mouth? Think: Skim Milk (Light Body) vs. Whole Milk (Medium Body) vs. Heavy Cream (Full Body).",
-        whyThemeHeader: "Why This Theme: 'Find Your Own Favorite Grape'",
-        whyThemeDesc: "Too often we buy wines based on marketing, prices, or labels. This tasting separates those factors. You will look closely at different primary grape varieties, exploring how they vary in structure, weight, and aroma. Your palate is distinct; there is no correct answer, only your personal favorites!",
+        whyThemeHeader: "Bring Good Wines Concept",
+        whyThemeDesc: "The foodora wine club cuts out marketing fluff to put flavor metrics and pairing alignment back into complete focus. Your palate is unique—there are no wrong answers, only great findings.",
         startMatBtn: "Start Interactive Tasting Mat",
-        virtualTableTitle: "Your Virtual Tasting Table",
+        virtualTableTitle: "Bring Good Wines Interactive Table",
         virtualTableSub: "Tap on any glass below to pull up its flavor profile and log your score!",
         session1Header: "🤍 SESSION 1: THE WHITES",
         session2Header: "❤️ SESSION 2: THE REDS",
@@ -621,10 +594,10 @@
         progressLabel: "Progress:",
         loggedText: "logged",
         resultsHeader: "Your Palate Profile Result",
-        resultsSub: "We processed your scores, descriptors, and structures across all 8 grapes. Here is your definitive profile and recommendations!",
+        resultsSub: "Bring Good Wines analysis matrix is complete! Here are your curated results based on tonight's flight.",
         refreshBtn: "🔄 Calculate / Refresh My Profile",
         noRatingsTitle: "No Ratings Logged Yet",
-        noRatingsDesc: "Head over to the Tasting Mat to score a few grapes first, then come back here to see your curated wine match!",
+        noRatingsDesc: "Head over to the Tasting Mat to score a few grapes first, then come back here to view your final profile match!",
         goMatBtn: "Go to Tasting Mat →",
         favWhiteLabel: "FAVORITE WHITE",
         favRedLabel: "FAVORITE RED",
@@ -637,10 +610,7 @@
         tensionAcidLabel: "Tension Acid",
         weightPrefLabel: "Weight Preferences",
         dryTannicLabel: "Dry vs. Tannic",
-        sharePrompt: "WANT TO SHARE OR REMEMBER YOUR WINES?",
-        copyBtn: "📋 Copy Summary To Clipboard",
-        printBtn: "🖨️ Print Profile Report",
-        copiedToast: "Copied wine summary!",
+        sharePrompt: "BRING GOOD WINES CLUB FLIGHT COMPLETE",
         notesSavedToast: "Notes automatically saved!",
         notTastedYet: "Not tasted yet",
         quickRatingLabel: "Quick rating:",
@@ -651,13 +621,14 @@
         regionsLabel: "Key Geographical Regions",
         outstandingLabel: "Outstanding Qualities & Profiles",
         labelCustomWineName: "Tasted Bottle Name / Producer:",
-        clearSessionBtn: "Reset Session"
+        clearSessionBtn: "Reset Session",
+        foodLabel: "Typical Food Pairings"
       },
       no: {
         titleFind: "Finn Din",
         titleGrape: "Favorittdrue",
-        tagline: "Personlig Smaksfølgesvenn",
-        taglineP: "En interaktiv smaksmatte, lynkurs og intelligent aroma- og strukturmåler for å hjelpe deg med å finne din favorittdrue.",
+        tagline: "foodora Vinklubb • Bring Good Wines",
+        taglineP: "Velkommen til kveldens smaking ledet av Jo Anders. Bruk denne digitale smaksmatten for å føre notater, vurdere struktur og finne din ideelle smaksprofil.",
         tabGuide: "Smaksguide",
         tabMat: "Smaksmatte",
         tabResults: "Mine Resultater",
@@ -668,7 +639,7 @@
         s2Title: "Swirl (Slynge)",
         s2Desc: "Hold stetten eller bunnen av glasset flatt på bordet og roter det i små sirkler. Dette tilfører oksygen til vinen, noe som frigjør de aromatiske forbindelsene slik at de stiger opp i glasset der du lettere kan lukte dem.",
         s3Title: "Smell (Lukte)",
-        s3Desc: "Ikke vær sjenert! Stikk nesen godt ned i glasset. Ta noen korte, dype åndedrag. Spør deg selv: Er den fruktig (sitron, fersken, mørke bær)? Floral? Jordlig (sopp, våt stein)? Eller lukker det krydder eller vanilje fra fatlagring?",
+        s3Desc: "Ikke vær sjenert! Stikk nesen godt ned i glasset. Ta noen korte, dype åndedrag. Spør deg selv: Er den fruktig (sitron, fersken, mørke bær)? Floral? Jordlig (sopp, våt stein)? Eller lukter det krydder eller vanilje fra fatlagring?",
         s4Title: "Sip (Smake)",
         s4Desc: "Ta en passe stor slurk og rull vinen rundt i hele munnhulen slik at alle smaksløkene dekkes. Tenk på teksturen først, deretter smakene. Trekk gjerne inn litt luft over vinen for å lufte den ytterligere på tungen.",
         s5Title: "Savor & Decide (Svelge/Konkludere)",
@@ -681,10 +652,10 @@
         tanninDesc: "Finnes primært i rødvin. Tanninene binder seg til proteinene i spyttet ditt og etterlater en tørr, snerpende følelse på gommene og tungen — som veldig sterk svart te.",
         bodyTitle: "Fylde (Tyngde og viskositet)",
         bodyDesc: "Hvor tung eller tykk føles vinen i munnen din? Tenk: Skummet melk (lett fylde) vs. Helmelk (middels fylde) vs. Kremfløte (stor fylde).",
-        whyThemeHeader: "Hvorfor dette temaet: 'Finn din egen favorittdrue'",
-        whyThemeDesc: "Altfor ofte kjøper vi vin basert på markedsføring, pris eller etiketter. Denne smakingen skiller ut disse faktorene. Du vil studere ulike primære druesorter og utforske hvordan de varierer i struktur, tyngde og aroma. Din smak er unik; det finnes ikke noe feil svar, bare dine personlige favoritter!",
+        whyThemeHeader: "Bring Good Wines Konsept",
+        whyThemeDesc: "foodora vinklubb kutter ut markedsføringsprek for å sette smaksmetrikk og matkombinasjoner tilbake i fullt fokus. Smaken din er unik — det finnes ingen feil svar.",
         startMatBtn: "Start interaktiv smaksmatte",
-        virtualTableTitle: "Ditt virtuelle smaksbord",
+        virtualTableTitle: "Bring Good Wines Interaktivt Bord",
         virtualTableSub: "Trykk på et glass under for å hente opp druens smaksprofil og føre inn poengene dine!",
         session1Header: "🤍 DEL 1: HVITVINER",
         session2Header: "❤️ DEL 2: RØDVINER",
@@ -702,10 +673,10 @@
         progressLabel: "Fremdrift:",
         loggedText: "registrert",
         resultsHeader: "Dine smaksprofil-resultater",
-        resultsSub: "Vi har analysert dine vurderinger og strukturelle preferanser på tvers av alle 8 druene. Her er din unike profil og anbefalinger!",
+        resultsSub: "Bring Good Wines-analysen er ferdig! Her er dine tilpassede resultater basert på kveldens smaksflight.",
         refreshBtn: "🔄 Beregn / Oppdater min profil",
         noRatingsTitle: "Ingen smaksnotater registrert ennå",
-        noRatingsDesc: "Gå til smaksmatten for å vurdere noen av druene først, og kom deretter tilbake hit for å se din vin-profil!",
+        noRatingsDesc: "Gå til smaksmatten for å vurdere noen av druene først, og kom deretter tilbake hit for å se vin-profilen din!",
         goMatBtn: "Gå til smaksmatten →",
         favWhiteLabel: "FAVORITT-HVITVIN",
         favRedLabel: "FAVORITT-RØDVIN",
@@ -718,10 +689,7 @@
         tensionAcidLabel: "Syreprofil",
         weightPrefLabel: "Fyldepreferanse",
         dryTannicLabel: "Tørrhet vs. Snerp",
-        sharePrompt: "VIL DU DELE ELLER LAGRE VINENE DINE?",
-        copyBtn: "📋 Kopier sammendrag",
-        printBtn: "🖨️ Skriv ut resultatrapport",
-        copiedToast: "Sammendraget er kopiert!",
+        sharePrompt: "BRING GOOD WINES VINKLUBB FLIGHT FULLFØRT",
         notesSavedToast: "Notatene ble lagret!",
         notTastedYet: "Ikke smakt ennå",
         quickRatingLabel: "Rask vurdering:",
@@ -732,7 +700,8 @@
         regionsLabel: "Viktige geografiske regioner",
         outstandingLabel: "Kvaliteter i toppeksemplene",
         labelCustomWineName: "Smakt flaske / Produsent:",
-        clearSessionBtn: "Nullstill"
+        clearSessionBtn: "Nullstill",
+        foodLabel: "Typiske Matkombinasjoner"
       }
     };
 
@@ -776,6 +745,7 @@
         profile: { en: { acidity: "High", body: "Light", customLabel: "Sweetness", customVal: "Bone Dry" }, no: { acidity: "Høy", body: "Lett", customLabel: "Sødme", customVal: "Knusktørr" } },
         regions: { en: "Marlborough (New Zealand), Sancerre (France)", no: "Marlborough (New Zealand), Sancerre (Frankrike)" },
         outstandingExamples: { en: "Electrifying acidities balanced by concentration.", no: "Elektrisk, syrlig spenst balansert med ren konsentrasjon." },
+        foodPairing: { en: "Goat cheese salad 🥗, sushi rolls 🍣, fresh asparagus 🌿, or lime ceviche 🐟", no: "Chèvre-salat 🥗, maki-sushi 🍣, frisk asparges 🌿, eller ceviche med lime 🐟" },
         expectedAromas: { 
           en: ["Grapefruit 🍊", "Lime Zest 🍋", "Fresh Grass 🌱", "Bell Pepper 🫑", "Gooseberry 🟢", "Passion Fruit 🍇", "White Peach 🍑", "Flint 🪨"], 
           no: ["Grapefrukt 🍊", "Limeskall 🍋", "Friskt gress 🌱", "Paprika 🫑", "Stikkelsbær 🟢", "Pasjonsfrukt 🍇", "Hvit fersken 🍑", "Flint 🪨"] 
@@ -789,6 +759,7 @@
         profile: { en: { acidity: "Very High", body: "Light", customLabel: "Sweetness", customVal: "Dry" }, no: { acidity: "Svært høy", body: "Lett", customLabel: "Sødme", customVal: "Tørr" } },
         regions: { en: "Mosel & Rheingau (Germany), Clare Valley (Australia)", no: "Mosel og Rheingau (Tyskland), Clare Valley (Australia)" },
         outstandingExamples: { en: "Thrilling tension with complex petroleum evolution.", no: "Spenning mellom syre og petroleumstone over tid." },
+        foodPairing: { en: "Spicy Thai curry 🌶️, fresh oysters 🦪, smoked salmon 🐟, or crispy pork belly 🥓", no: "Sterk thai-curry 🌶️, friske østers 🦪, røkt laks 🐟, eller sprøstekt ribbe 🥓" },
         expectedAromas: { 
           en: ["Green Apple 🍏", "Lime Curd 🍋", "White Peach 🍑", "Jasmine 🌸", "Petrol ⛽", "Beeswax 🐝", "Wet Slate 🧱", "Ginger 🫚"], 
           no: ["Grønt eple 🍏", "Sitronkrem 🍋", "Fersken 🍑", "Jasmin 🌸", "Petroleum ⛽", "Bievoks 🐝", "Våt skifer 🧱", "Ingefær 🫚"] 
@@ -802,6 +773,7 @@
         profile: { en: { acidity: "High", body: "Medium", customLabel: "Sweetness", customVal: "Dry to Off-Dry" }, no: { acidity: "Høy", body: "Middels", customLabel: "Sødme", customVal: "Tørr til halvtørr" } },
         regions: { en: "Vouvray (Loire, France), Swartland (South Africa)", no: "Vouvray (Loire, Frankrike), Swartland (Sør-Afrika)" },
         outstandingExamples: { en: "Possesses honeycomb notes and phenomenal structural longevity.", no: "Voksaktig honningtone med fabelaktig lagringsevne." },
+        foodPairing: { en: "Roasted chicken 🍗, soft cream brie 🧀, sweet and sour pork 🍛, or apple tarts 🥧", no: "Stekt kylling 🍗, kremet brie 🧀, sursøt svinegryte 🍛, eller lun eplekake 🥧" },
         expectedAromas: { 
           en: ["Honey 🍯", "Yellow Pear 🍐", "Chamomile 🌼", "Quince 🍊", "Baked Apple 🍎", "Wet Wool 🐑", "Marzipan 🍬", "Lemon Peel 🍋"], 
           no: ["Honning 🍯", "Gult pære 🍐", "Kamille 🌼", "Kvede 🍊", "Bakt eple 🍎", "Våt ull 🐑", "Marsipan 🍬", "Sitronskall 🍋"] 
@@ -815,6 +787,7 @@
         profile: { en: { acidity: "Medium", body: "Full", customLabel: "Sweetness", customVal: "Dry" }, no: { acidity: "Middels", body: "Fyldig", customLabel: "Sødme", customVal: "Tørr" } },
         regions: { en: "Burgundy (France), Napa Valley (USA)", no: "Burgund (Frankrike), Napa Valley (USA)" },
         outstandingExamples: { en: "Integrated baking spices balanced by orchard fruit depth.", no: "Integrert fatkrydder med dyp fruktkjerne." },
+        foodPairing: { en: "Creamy truffle pasta 🍝, grilled lobster tail 🦞, pan-seared butter scallops 🐚, or roasted turkey 🦃", no: "Kremet trøffel-pasta 🍝, grillet hummer 🦞, kamskjell i pisket smør 🐚, eller ovnsstekt kalkun 🦃" },
         expectedAromas: { 
           en: ["Vanilla 🍦", "Butter 🧈", "Toasted Oak 🪵", "Baked Pineapple 🍍", "Coconut 🥥", "Hazelnut 🌰", "Brioche 🍞", "Caramel 🍯"], 
           no: ["Vanilje 🍦", "Smør 🧈", "Ristet eik 🪵", "Bakt ananas 🍍", "Kokos 🥥", "Hasselnøtt 🌰", "Brioche 🍞", "Karamell 🍯"] 
@@ -828,6 +801,7 @@
         profile: { en: { acidity: "Medium-High", body: "Light", customLabel: "Tannins", customVal: "Low" }, no: { acidity: "Middels høy", body: "Lett", customLabel: "Tanniner", customVal: "Lav" } },
         regions: { en: "Burgundy (France), Oregon (USA), Central Otago (NZ)", no: "Burgund (Frankrike), Oregon (USA), Central Otago (NZ)" },
         outstandingExamples: { en: "Ethereal translucency with savory red berry complexity.", no: "Eterisk og lys farge med kompleks, syrlig skogsbærsmak." },
+        foodPairing: { en: "Roasted duck breast 🦆, wild mushroom risotto 🍄, seared salmon fillets 🐟, or artisanal charcuterie platter 🥩", no: "Bakt andebryst 🦆, villsopprisotto 🍄, grillet laksefilet 🐟, eller trefjøl med spekemat 🥩" },
         expectedAromas: { 
           en: ["Red Cherry 🍒", "Raspberry 🍓", "Strawberry 🍓", "Mushroom 🍄", "Forest Floor 🍂", "Cinnamon 🪵", "Cola 🥤", "Cranberry 🍒"], 
           no: ["Røde kirsebær 🍒", "Bringebær 🍓", "Jordbær 🍓", "Sopp 🍄", "Skogbunn 🍂", "Kanel 🪵", "Cola 🥤", "Tranebær 🍒"] 
@@ -841,6 +815,7 @@
         profile: { en: { acidity: "High", body: "Medium", customLabel: "Tannins", customVal: "Very High" }, no: { acidity: "Høy", body: "Middels", customLabel: "Tanniner", customVal: "Svært høy" } },
         regions: { en: "Barolo & Barbaresco (Piedmont, Italy)", no: "Barolo og Barbaresco (Piemonte, Italia)" },
         outstandingExamples: { en: "Dramatic structural power needing cellar time to soften.", no: "Enorm kraft og snerp som krever tid for å bli fløyelsmyk." },
+        foodPairing: { en: "White truffle tagliatelle 🍝, slow-cooked beef osso buco 🍖, mature parmesan chunks 🧀, or roasted venison 🦌", no: "Tagliatelle med hvit trøffel 🍝, osso buco 🍖, modne biter av parmesan 🧀, eller stekt hjortevilt 🦌" },
         expectedAromas: { 
           en: ["Rose Petal 🌹", "Tar 🖤", "Leather 💼", "Tobacco 🍂", "Red Cherry 🍒", "Licorice 🍬", "Dried Herbs 🌿", "Anise 🌿"], 
           no: ["Roseblader 🌹", "Tjære 🖤", "Lær 💼", "Tobakk 🍂", "Røde kirsebær 🍒", "Lakris 🍬", "Tørkede urter 🌿", "Anis 🌿"] 
@@ -854,6 +829,7 @@
         profile: { en: { acidity: "Medium", body: "Full", customLabel: "Tannins", customVal: "High" }, no: { acidity: "Middels", body: "Fyldig", customLabel: "Tanniner", customVal: "Høy" } },
         regions: { en: "Bordeaux (France), Napa Valley (USA), Coonawarra (Australia)", no: "Bordeaux (Frankrike), Napa Valley (USA), Coonawarra (Australia)" },
         outstandingExamples: { en: "Exceptional structural poise building tobacco and mint accents.", no: "Flott balanse med dype toner av solbær, tobakk og mynte." },
+        foodPairing: { en: "Prime ribeye steak 🥩, charred lamb chops 🐑, intense dark chocolate tart 🍫, or mature vintage cheddar 🧀", no: "Grillet entrecôte 🥩, mørke lammeskoteletter 🐑, fyldig mørk sjokoladepai 🍫, eller vellagret cheddar 🧀" },
         expectedAromas: { 
           en: ["Blackcurrant 🫐", "Blackberry 🍇", "Cedar Wood 🪵", "Graphite ✏️", "Dark Chocolate 🍫", "Mint 🌿", "Tobacco 🍂", "Green Pepper 🫑"], 
           no: ["Solbær 🫐", "Bjørnebær 🍇", "Sedertre 🪵", "Grafitt ✏️", "Mørk sjokolade 🍫", "Mynte 🌿", "Tobakk 🍂", "Grønn paprika 🫑"] 
@@ -867,6 +843,7 @@
         profile: { en: { acidity: "Medium-High", body: "Medium-Full", customLabel: "Tannins", customVal: "Medium-High" }, no: { acidity: "Middels høy", body: "Middels fyldig", customLabel: "Tanniner", customVal: "Middels høy" } },
         regions: { en: "Northern Rhône (France), Barossa Valley (Australia)", no: "Nord-Rhône (Frankrike), Barossa Valley (Australia)" },
         outstandingExamples: { en: "Opaque purple concentration with wild violet overtones.", no: "Tett mørk lilla konsentrasjon med duft av fioler." },
+        foodPairing: { en: "Smoky BBQ ribs 🍖, wild game roast 🦌, cracked black pepper steak 🥩, or slow-braised lamb shanks 🍗", no: "Røykt grillribbe 🍖, stekt elgkjøtt 🦌, saftig pepperbiff 🥩, eller langtidsmørt lammeskank 🍗" },
         expectedAromas: { 
           en: ["Blackberry 🍇", "Black Pepper 🫑", "Smoke 💨", "Plum 🍑", "Bacon Fat 🥓", "Black Olive 🫒", "Violet 🌸", "Dark Cocoa 🍫"], 
           no: ["Bjørnebær 🍇", "Sort pepper 🫑", "Røyk 💨", "Plomme 🍑", "Baconfett 🥓", "Sorte oliven 🫒", "Fioler 🌸", "Mørk kakao 🍫"] 
@@ -888,8 +865,8 @@
     function setLanguage(lang) {
       currentLang = lang;
       
-      document.getElementById('lang-btn-en').className = `px-2 py-1 rounded text-[10px] md:text-xs font-bold transition ${lang==='en'?'bg-amber-500 text-stone-950':'text-stone-400 hover:text-white'}`;
-      document.getElementById('lang-btn-no').className = `px-2 py-1 rounded text-[10px] md:text-xs font-bold transition ${lang==='no'?'bg-amber-500 text-stone-950':'text-stone-400 hover:text-white'}`;
+      document.getElementById('lang-btn-en').className = `px-2 py-1 rounded text-[10px] md:text-xs font-bold transition ${lang==='en'?'bg-rose-500 text-white font-black':'text-stone-400 hover:text-white'}`;
+      document.getElementById('lang-btn-no').className = `px-2 py-1 rounded text-[10px] md:text-xs font-bold transition ${lang==='no'?'bg-rose-500 text-white font-black':'text-stone-400 hover:text-white'}`;
 
       const dict = TRANSLATIONS[lang];
       
@@ -953,6 +930,7 @@
       document.getElementById('grape-personality-label').innerText = dict.grapePersonalityLabel;
       document.getElementById('card-regions-label').innerText = dict.regionsLabel;
       document.getElementById('card-outstanding-label').innerText = dict.outstandingLabel;
+      document.getElementById('card-food-label').innerText = dict.foodLabel;
 
       document.getElementById('results-header').innerText = dict.resultsHeader;
       document.getElementById('results-sub').innerText = dict.resultsSub;
@@ -975,8 +953,6 @@
       document.getElementById('weight-pref-label').innerText = dict.weightPrefLabel;
       document.getElementById('dry-tannic-label').innerText = dict.dryTannicLabel;
       document.getElementById('share-prompt').innerText = dict.sharePrompt;
-      document.getElementById('btn-copy-summary').innerText = dict.copyBtn;
-      document.getElementById('btn-print').innerText = dict.printBtn;
 
       WINE_DATA.forEach(w => {
         document.getElementById(`mat-label-${w.id}`).innerText = w.shortName[lang];
@@ -995,7 +971,7 @@
         if(t === tabId) {
           sect.classList.remove('hidden');
           sect.classList.add('block');
-          btn.className = "py-2.5 px-3 rounded-lg text-xs md:text-sm font-semibold bg-gradient-to-r from-amber-500 to-amber-600 text-stone-950 shadow-md transition-all duration-200";
+          btn.className = "py-2.5 px-3 rounded-lg text-xs md:text-sm font-semibold bg-gradient-to-r from-rose-500 to-rose-600 text-white shadow-md transition-all duration-200";
         } else {
           sect.classList.remove('block');
           sect.classList.add('hidden');
@@ -1031,10 +1007,10 @@
       for(let i=0; i<8; i++) {
         const borderEl = document.getElementById(`mat-glass-${i}`);
         if(i === index) {
-          borderEl.classList.add('border-amber-500');
-          borderEl.classList.remove('border-stone-800', 'border-amber-500/20');
+          borderEl.classList.add('border-rose-500');
+          borderEl.classList.remove('border-stone-800', 'border-rose-500/20');
         } else {
-          borderEl.classList.remove('border-amber-500');
+          borderEl.classList.remove('border-rose-500');
           borderEl.classList.add('border-stone-800');
         }
       }
@@ -1042,13 +1018,14 @@
       document.getElementById('card-wine-number').innerText = `${TRANSLATIONS[lang].tabMat.replace('🍷 ','')} #${wine.number} - ${wine.type==='white'?'White Session':'Red Session'}`;
       document.getElementById('card-wine-name').innerText = wine.name[lang];
       document.getElementById('card-wine-type').innerText = wine.type === 'white' ? (lang==='en'?'White Wine':'Hvitvin') : (lang==='en'?'Red Wine':'Rødvin');
-      document.getElementById('card-wine-type').className = wine.type==='white' ? "px-2.5 py-0.5 text-[10px] rounded-full bg-yellow-500/10 text-yellow-300 border border-yellow-500/20 font-semibold" : "px-2.5 py-0.5 text-[10px] rounded-full bg-red-500/10 text-red-400 border border-red-500/20 font-semibold";
+      document.getElementById('card-wine-type').className = wine.type==='white' ? "px-2.5 py-0.5 text-[10px] rounded-full bg-yellow-500/10 text-yellow-300 border border-yellow-500/20 font-semibold" : "px-2.5 py-0.5 text-[10px] rounded-full bg-rose-500/10 text-rose-400 border border-rose-500/20 font-semibold";
       
       document.getElementById('card-wine-desc').innerText = wine.desc[lang];
       document.getElementById('card-wine-flavors').innerText = wine.flavors[lang];
       document.getElementById('card-wine-temp').innerText = wine.temp;
       document.getElementById('card-wine-regions').innerText = wine.regions[lang];
       document.getElementById('card-wine-outstanding').innerText = wine.outstandingExamples[lang];
+      document.getElementById('card-wine-food').innerText = wine.foodPairing[lang];
 
       document.getElementById('profile-acidity').innerText = wine.profile[lang].acidity;
       document.getElementById('profile-body').innerText = wine.profile[lang].body;
@@ -1097,7 +1074,7 @@
           if(checkEl) checkEl.classList.remove('hidden');
           
           const fluid = document.getElementById('fluid-' + currentWineIndex);
-          if(fluid) fluid.setAttribute('fill', WINE_DATA[currentWineIndex].type==='white' ? 'rgba(245,230,180,0.9)' : 'rgba(186,12,47,0.9)');
+          if(fluid) fluid.setAttribute('fill', WINE_DATA[currentWineIndex].type==='white' ? 'rgba(245,230,180,0.9)' : 'rgba(255,0,127,0.85)');
 
           showToast(`${TRANSLATIONS[currentLang].toastLogged} ${WINE_DATA[currentWineIndex].name[currentLang]}`);
           updateProgressCount();
@@ -1137,7 +1114,7 @@
         
         btn.className = `px-3 py-1 text-[11px] rounded-full border transition duration-100 font-medium ${
           isSelected 
-            ? 'bg-amber-500/20 text-amber-300 border-amber-500/50 shadow-md' 
+            ? 'bg-rose-500/20 text-rose-300 border-rose-500/50 shadow-md' 
             : 'bg-stone-950 text-stone-400 border-stone-800 hover:border-stone-700 hover:text-stone-200'
         }`;
         btn.innerText = aroma;
@@ -1157,11 +1134,11 @@
     function saveCurrentState() {
       WINE_DATA[currentWineIndex].userRating.notes = document.getElementById('input-notes').value;
       WINE_DATA[currentWineIndex].userRating.customWineName = document.getElementById('input-custom-wine-name').value;
-      localStorage.setItem('find_your_grape_ratings_v4', JSON.stringify(WINE_DATA.map(w => w.userRating)));
+      localStorage.setItem('find_your_grape_ratings_foodora', JSON.stringify(WINE_DATA.map(w => w.userRating)));
     }
 
     function setupGlobalStorageSync() {
-      const cached = localStorage.getItem('find_your_grape_ratings_v4');
+      const cached = localStorage.getItem('find_your_grape_ratings_foodora');
       if(cached) {
         try {
           const parsedRatings = JSON.parse(cached);
@@ -1172,12 +1149,12 @@
                 const checkEl = document.getElementById(`check-${w.id}`);
                 if(checkEl) checkEl.classList.remove('hidden');
                 const fluid = document.getElementById(`fluid-${w.id}`);
-                if(fluid) fluid.setAttribute('fill', w.type==='white' ? 'rgba(245,230,180,0.9)' : 'rgba(186,12,47,0.9)');
+                if(fluid) fluid.setAttribute('fill', w.type==='white' ? 'rgba(245,230,180,0.9)' : 'rgba(255,0,127,0.85)');
               }
             }
           });
           selectWine(0);
-        } catch(e) { console.error("Cache system context parsing bypass complete", e); }
+        } catch(e) { console.error("Cache system configuration check trace complete", e); }
       }
     }
 
@@ -1199,7 +1176,7 @@
         : "Er du sikker på at du vil slette alle smaksnotater og starte smakingen helt på nytt?";
       
       if(confirm(msg)) {
-        localStorage.removeItem('find_your_grape_ratings_v4');
+        localStorage.removeItem('find_your_grape_ratings_foodora');
         WINE_DATA.forEach(w => {
           w.userRating = { stars: 0, acidity: 3, body: 3, custom: 3, selectedAromas: [], notes: "", customWineName: "" };
           const checkEl = document.getElementById(`check-${w.id}`);
@@ -1313,43 +1290,6 @@
 
       document.getElementById('persona-title').innerText = targetPersona.title;
       document.getElementById('persona-desc').innerText = targetPersona.desc;
-    }
-
-    function copyTastingSummary() {
-      const lang = currentLang;
-      let summaryText = `=== MY WINE PALATE PROFILE SUMMARY ===\n\n`;
-      
-      WINE_DATA.forEach(w => {
-        if(w.userRating.stars > 0) {
-          summaryText += `Glass #${w.number}: ${w.name[lang]} - Rated: ${w.userRating.stars}/5 Stars\n`;
-          summaryText += `- Custom Label / Bottle: ${w.userRating.customWineName || 'Generic Tasting Entry'}\n`;
-          summaryText += `- Structure Logged: Acidity [${w.userRating.acidity}/5], Body [${w.userRating.body}/5]\n`;
-          if(w.userRating.selectedAromas.length > 0) {
-            summaryText += `- Detected Aromas: ${w.userRating.selectedAromas.join(', ')}\n`;
-          }
-          if(w.userRating.notes) {
-            summaryText += `- Notes: ${w.userRating.notes.trim()}\n`;
-          }
-          summaryText += `\n`;
-        }
-      });
-
-      const personaTitle = document.getElementById('persona-title').innerText;
-      summaryText += `=====================================\n`;
-      summaryText += `Calculated Palate Type: ${personaTitle}\n`;
-
-      navigator.clipboard.writeText(summaryText).then(() => {
-        const msg = document.getElementById('clipboard-message');
-        msg.innerText = TRANSLATIONS[lang].copiedToast;
-        msg.classList.remove('hidden');
-        setTimeout(() => msg.classList.add('hidden'), 4000);
-      });
-    }
-
-    function triggerCleanPrint() {
-      // Force render latest metrics inside dashboard matrix before execution 
-      calculateResults();
-      window.print();
     }
 
     function showToast(text) {
