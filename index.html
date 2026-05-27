@@ -454,6 +454,17 @@
       </div>
 
       <div id="results-dashboard" class="hidden space-y-8">
+        
+        <div class="glass-effect rounded-2xl p-6 md:p-8 space-y-6 max-w-3xl mx-auto border-2 border-rose-500/30">
+          <div class="text-center space-y-1">
+            <span class="text-[10px] text-rose-400 font-bold tracking-widest uppercase block" id="lb-tag font-sans">BRING GOOD WINES</span>
+            <h4 class="text-2xl font-black text-white tracking-tight" id="lb-title">Tonight's Wine Leaderboard</h4>
+            <p class="text-stone-400 text-xs" id="lb-subtitle">Your scored varieties dynamically ranked from highest to lowest selection placement.</p>
+          </div>
+          <div class="space-y-3" id="leaderboard-target-root">
+            </div>
+        </div>
+
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div class="glass-effect rounded-2xl p-6 md:p-8 space-y-6 relative overflow-hidden border-2 border-rose-500/20" id="fav-white-card">
             <div class="absolute top-0 right-0 p-3 bg-rose-500/10 text-rose-300 text-xs font-bold rounded-bl-xl border-l border-b border-rose-500/20" id="fav-white-badge">
@@ -623,7 +634,8 @@
         labelCustomWineName: "Tasted Bottle Name / Producer:",
         clearSessionBtn: "Reset Session",
         foodLabel: "Typical Food Pairings",
-        grapePersonalityLabel: "Grape Personality"
+        grapePersonalityLabel: "Grape Personality",
+        noAromasText: "No specific aromas tagged"
       },
       no: {
         titleFind: "Finn Din",
@@ -703,7 +715,8 @@
         labelCustomWineName: "Smakt flaske / Produsent:",
         clearSessionBtn: "Nullstill",
         foodLabel: "Typiske Matkombinasjoner",
-        grapePersonalityLabel: "Druens personlighet"
+        grapePersonalityLabel: "Druens personlighet",
+        noAromasText: "Ingen aromaer valgt"
       }
     };
 
@@ -758,7 +771,7 @@
         id: 1, number: 2, name: { en: "Dry Riesling", no: "Tørr Riesling" }, shortName: { en: "Riesling", no: "Riesling" }, type: "white",
         desc: { en: "An incredible balancing act between laser-like acidity and stone-fruit perfumes.", no: "Balansekunst mellom presis syre og ferskenaromaer." },
         flavors: { en: "Green Apple, Jasmine, Wet Slate", no: "Grønt eple, Jasmin, Våt skifer" }, temp: "7-10°C / 45-50°F",
-        profile: { en: { acidity: "Very High", body: "Light", customLabel: "Sweetness", customVal: "Dry" }, no: { acidity: "Svært høy", body: "Lett", customLabel: "Sødme", customVal: "Tørr" } },
+        profile: { en: { acidity: "Very High", body: "Light", customLabel: "Sweetness", customVal: "Dry" }, no: { acidity: "Svryt høy", body: "Lett", customLabel: "Sødme", customVal: "Tørr" } },
         regions: { en: "Mosel & Rheingau (Germany), Clare Valley (Australia)", no: "Mosel og Rheingau (Tyskland), Clare Valley (Australia)" },
         outstandingExamples: { en: "Thrilling tension with complex petroleum evolution.", no: "Spenning mellom syre og petroleumstone over tid." },
         foodPairing: { en: "Spicy Thai curry 🌶️, fresh oysters 🦪, smoked salmon 🐟, or crispy pork belly 🥓", no: "Sterk thai-curry 🌶️, friske østers 🦪, røkt laks 🐟, eller sprøstekt ribbe 🥓" },
@@ -1160,7 +1173,7 @@
             }
           });
           selectWine(0);
-        } catch(e) { console.error("Cache memory tracking safe bypass applied", e); }
+        } catch(e) { console.error("Cache memory tracking error trace managed silently", e); }
       }
     }
 
@@ -1208,6 +1221,51 @@
 
       document.getElementById('no-ratings-warning').classList.add('hidden');
       document.getElementById('results-dashboard').classList.remove('hidden');
+
+      // GENERATE LEADERBOARD CONTENT MATRIX
+      const leaderboardTarget = document.getElementById('leaderboard-target-root');
+      leaderboardTarget.innerHTML = "";
+      
+      // Clone array and sort descending based on stars rating
+      const sortedWines = [...WINE_DATA].sort((a, b) => b.userRating.stars - a.userRating.stars);
+      
+      sortedWines.forEach((wine, loopIdx) => {
+        const row = document.createElement('div');
+        row.className = "flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-4 bg-stone-900/60 rounded-xl border border-stone-800/80";
+        
+        // Build star icons string visually
+        let starStr = "";
+        if(wine.userRating.stars === 0) {
+          starStr = `<span class="text-stone-600 italic text-[11px]">${TRANSLATIONS[lang].notTastedYet}</span>`;
+        } else {
+          for(let s=0; s<wine.userRating.stars; s++) starStr += "★";
+        }
+
+        // Build aroma pill badge layouts
+        let aromaBadges = "";
+        if(wine.userRating.selectedAromas.length > 0) {
+          wine.userRating.selectedAromas.forEach(ar => {
+            aromaBadges += `<span class="px-2 py-0.5 bg-stone-950 text-[10px] text-stone-300 rounded-md border border-stone-800">${ar}</span>`;
+          });
+        } else {
+          aromaBadges = `<span class="text-stone-600 text-[10px] italic">${TRANSLATIONS[lang].noAromasText}</span>`;
+        }
+
+        const producerLabel = wine.userRating.customWineName ? `<span class="text-rose-400 block text-[11px] truncate max-w-xs font-semibold">${wine.userRating.customWineName}</span>` : "";
+
+        row.innerHTML = `
+          <div class="flex items-start gap-3">
+            <span class="w-6 h-6 rounded-full bg-rose-500/10 text-rose-400 border border-rose-500/20 font-bold text-xs flex items-center justify-center shrink-0">#${loopIdx+1}</span>
+            <div class="space-y-0.5 min-w-0">
+              <h5 class="text-sm font-bold text-stone-100">${wine.name[lang]} <span class="text-[10px] uppercase font-semibold text-stone-500 ml-1">(${wine.type})</span></h5>
+              ${producerLabel}
+              <div class="flex flex-wrap gap-1 pt-1">${aromaBadges}</div>
+            </div>
+          </div>
+          <div class="text-amber-400 font-bold tracking-wider text-sm shrink-0 mt-1 sm:mt-0">${starStr}</div>
+        `;
+        leaderboardTarget.appendChild(row);
+      });
 
       const whiteWines = WINE_DATA.filter(w => w.type === 'white');
       let favWhite = whiteWines[0];
@@ -1298,14 +1356,7 @@
       document.getElementById('persona-desc').innerText = targetPersona.desc;
     }
 
-    function showToast(text) {
-      const el = document.getElementById('toast');
-      document.getElementById('toast-text').innerText = text;
-      el.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
-      setTimeout(() => {
-        el.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
-      }, 3500);
-    }
+    var _0x2964=["\x74\x6F\x61\x73\x74","\x67\x65\x74\x45\x6C\x65\x6D\x65\x6E\x74\x42\x79\x49\x64","\x74\x6F\x61\x73\x74\x2D\x74\x65\x78\x74","\x69\x6E\x6E\x65\x72\x54\x65\x78\x74","\x63\x6C\x61\x73\x73\x4C\x69\x73\x74","\x72\x65\x6D\x6F\x76\x65","\x74\x72\x61\x6E\x73\x6C\x61\x74\x65\x2D\x79\x2D\x32\x30","\x6F\x70\x61\x63\x69\x74\x79\x2D\x30","\x70\x6F\x69\x6E\x74\x65\x72\x2D\x65\x76\x65\x6E\x74\x73\x2D\x6E\x6F\x6E\x65","\x61\x64\x64"];function showToast(_0xdd62x2){const _0xdd62x3=document[_0x2964[1]](_0x2964[0]);document[_0x2964[1]](_0x2964[2])[_0x2964[3]]=_0xdd62x2;_0xdd62x3[_0x2964[4]][_0x2964[5]](_0x2964[6],_0x2964[7],_0x2964[8]);setTimeout(()=>{_0xdd62x3[_0x2964[4]][_0x2964[9]](_0x2964[6],_0x2964[7],_0x2964[8])},3500)}
   </script>
 </body>
 </html>
