@@ -276,7 +276,7 @@
                   <path d="M12 15V22M8 22H16M6 6C6 11 18 11 18 6V3H6V6Z" stroke-linecap="round" stroke-linejoin="round"/>
                   <path id="fluid-6" d="M7 6C7 9.5 17 9.5 17 6H7Z" fill="rgba(186,12,47,0.4)" stroke="none"/>
                 </svg>
-                <span class="text-[10px] md:text-xs font-bold text-stone-300 group-hover:text-rose-300 text-center truncate w-full" id="mat-label-6">Cabernet S.</span>
+                <span class="text-[10px] md:text-xs font-bold text-stone-300 group-hover:text-rose-300 text-center truncate w-full" id="mat-label-6">Syrah / Shiraz</span>
                 <span id="check-6" class="hidden text-xs text-emerald-500 absolute top-1 right-2">✓</span>
               </button>
 
@@ -286,7 +286,7 @@
                   <path d="M12 15V22M8 22H16M6 6C6 11 18 11 18 6V3H6V6Z" stroke-linecap="round" stroke-linejoin="round"/>
                   <path id="fluid-7" d="M7 6C7 9.5 17 9.5 17 6H7Z" fill="rgba(186,12,47,0.4)" stroke="none"/>
                 </svg>
-                <span class="text-[10px] md:text-xs font-bold text-stone-300 group-hover:text-rose-300 text-center truncate w-full" id="mat-label-7">Syrah / Shiraz</span>
+                <span class="text-[10px] md:text-xs font-bold text-stone-300 group-hover:text-rose-300 text-center truncate w-full" id="mat-label-7">Cabernet S.</span>
                 <span id="check-7" class="hidden text-xs text-emerald-500 absolute top-1 right-2">✓</span>
               </button>
             </div>
@@ -838,21 +838,7 @@
         userRating: { stars: 0, acidity: 3, body: 3, custom: 3, selectedAromas: [], notes: "", customWineName: "" }
       },
       {
-        id: 6, number: 7, name: { en: "Cabernet Sauvignon", no: "Cabernet Sauvignon" }, shortName: { en: "Cabernet S.", no: "Cabernet S." }, type: "red",
-        desc: { en: "The undisputed heavyweight king of bold, structured red wines.", no: "Den ubestridte tungvektskongen blant kraftige og faste rødviner." },
-        flavors: { en: "Blackberry, Cedar Wood, Graphite", no: "Bjørnebær, Sedertre, Grafitt" }, temp: "16-20°C / 60-68°F",
-        profile: { en: { acidity: "Medium", body: "Full", customLabel: "Tannins", customVal: "High" }, no: { acidity: "Middels", body: "Fyldig", customLabel: "Tanniner", customVal: "Høy" } },
-        regions: { en: "Bordeaux (France), Napa Valley (USA), Coonawarra (Australia)", no: "Bordeaux (Frankrike), Napa Valley (USA), Coonawarra (Australia)" },
-        outstandingExamples: { en: "Exceptional structural poise building tobacco and mint accents.", no: "Flott balanse med dype toner av solbær, tobakk og mynte." },
-        foodPairing: { en: "Prime ribeye steak 🥩, charred lamb chops 🐑, intense dark chocolate tart 🍫, or mature vintage cheddar 🧀", no: "Grillet entrecôte 🥩, mørke lammeskoteletter 🐑, fyldig mørk sjokoladepai 🍫, eller vellagret cheddar 🧀" },
-        expectedAromas: { 
-          en: ["Blackcurrant 🫐", "Blackberry 🍇", "Cedar Wood 🪵", "Graphite ✏️", "Dark Chocolate 🍫", "Mint 🌿", "Tobacco 🍂", "Green Pepper 🫑", "Eucalyptus 🌿", "Cassis 🍷", "Vanilla 🍦", "Leather 💼"], 
-          no: ["Solbær 🫐", "Bjørnebær 🍇", "Sedertre 🪵", "Grafitt ✏️", "Mørk sjokolade 🍫", "Mynte 🌿", "Tobakk 🍂", "Grønn paprika 🫑", "Eukalyptus 🌿", "Solbærlikør 🍷", "Vanilje 🍦", "Lær 💼"] 
-        },
-        userRating: { stars: 0, acidity: 3, body: 3, custom: 3, selectedAromas: [], notes: "", customWineName: "" }
-      },
-      {
-        id: 7, number: 8, name: { en: "Syrah / Shiraz", no: "Syrah / Shiraz" }, shortName: { en: "Syrah / Shiraz", no: "Syrah / Shiraz" }, type: "red",
+        id: 6, number: 7, name: { en: "Syrah / Shiraz", no: "Syrah / Shiraz" }, shortName: { en: "Syrah / Shiraz", no: "Syrah / Shiraz" }, type: "red",
         desc: { en: "Dark, moody, and deeply pigmented with savory, peppery highlights.", no: "Mørk og dyp farge med krydret og pepperpreget smaksprofil." },
         flavors: { en: "Blackberry, Black Pepper, Smoke", no: "Bjørnebær, Sort pepper, Røyk" }, temp: "16-18°C / 60-65°F",
         profile: { en: { acidity: "Medium-High", body: "Medium-Full", customLabel: "Tannins", customVal: "Medium-High" }, no: { acidity: "Middels høy", body: "Middels fyldig", customLabel: "Tanniner", customVal: "Middels høy" } },
@@ -862,6 +848,20 @@
         expectedAromas: { 
           en: ["Blackberry 🍇", "Black Pepper 🫑", "Smoke 💨", "Plum 🍑", "Bacon Fat 🥓", "Black Olive 🫒", "Violet 🌸", "Dark Cocoa 🍫", "Blueberry 🫐", "Rosemary 🌿", "Charcoal 🪵", "Allspice 🫚"], 
           no: ["Bjørnebær 🍇", "Sort pepper 🫑", "Røyk 💨", "Plomme 🍑", "Baconfett 🥓", "Sorte oliven 🫒", "Fioler 🌸", "Mørk kakao 🍫", "Blåbær 🫐", "Rosmarin 🌿", "Trekull 🪵", "Allebånde 🫚"] 
+        },
+        userRating: { stars: 0, acidity: 3, body: 3, custom: 3, selectedAromas: [], notes: "", customWineName: "" }
+      },
+      {
+        id: 7, number: 8, name: { en: "Cabernet Sauvignon", no: "Cabernet Sauvignon" }, shortName: { en: "Cabernet S.", no: "Cabernet S." }, type: "red",
+        desc: { en: "The undisputed heavyweight king of bold, structured red wines.", no: "Den ubestridte tungvektskongen blant kraftige og faste rødviner." },
+        flavors: { en: "Blackberry, Cedar Wood, Graphite", no: "Bjørnebær, Sedertre, Grafitt" }, temp: "16-20°C / 60-68°F",
+        profile: { en: { acidity: "Medium", body: "Full", customLabel: "Tannins", customVal: "High" }, no: { acidity: "Middels", body: "Fyldig", customLabel: "Tanniner", customVal: "Høy" } },
+        regions: { en: "Bordeaux (France), Napa Valley (USA), Coonawarra (Australia)", no: "Bordeaux (Frankrike), Napa Valley (USA), Coonawarra (Australia)" },
+        outstandingExamples: { en: "Exceptional structural poise building tobacco and mint accents.", no: "Flott balanse med dype toner av solbær, tobakk og mynte." },
+        foodPairing: { en: "Prime ribeye steak 🥩, charred lamb chops 🐑, intense dark chocolate tart 🍫, or mature vintage cheddar 🧀", no: "Grillet entrecôte 🥩, mørke lammeskoteletter 🐑, fyldig mørk sjokoladepai 🍫, eller vellagret cheddar 🧀" },
+        expectedAromas: { 
+          en: ["Blackcurrant 🫐", "Blackberry 🍇", "Cedar Wood 🪵", "Graphite ✏️", "Dark Chocolate 🍫", "Mint 🌿", "Tobacco 🍂", "Green Pepper 🫑", "Eucalyptus 🌿", "Cassis 🍷", "Vanilla 🍦", "Leather 💼"], 
+          no: ["Solbær 🫐", "Bjørnebær 🍇", "Sedertre 🪵", "Grafitt ✏️", "Mørk sjokolade 🍫", "Mynte 🌿", "Tobakk 🍂", "Grønn paprika 🫑", "Eukalyptus 🌿", "Solbærlikør 🍷", "Vanilje 🍦", "Lær 💼"] 
         },
         userRating: { stars: 0, acidity: 3, body: 3, custom: 3, selectedAromas: [], notes: "", customWineName: "" }
       }
@@ -1317,8 +1317,8 @@
       const alternativeReds = {
         4: ["Gamay", "Schiava", "Etna Rosso"],
         5: ["Barbaresco", "Chianti Classico", "Rioja Gran Reserva"],
-        6: ["Bordeaux Blends", "Super Tuscans", "Malbec"],
-        7: ["Châteauneuf-du-Pape", "Priorat", "Mourvèdre"]
+        6: ["Châteauneuf-du-Pape", "Priorat", "Mourvèdre"],
+        7: ["Bordeaux Blends", "Super Tuscans", "Malbec"]
       };
       (alternativeReds[favRed.id] || ["Tempranillo", "Mencía"]).forEach(rec => {
         const span = document.createElement('span');
